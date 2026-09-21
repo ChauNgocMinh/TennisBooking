@@ -1,0 +1,251 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="hero-banner">
+    <!-- Background Video -->
+    <video class="hero-video"
+           autoplay
+           muted
+           loop
+           playsinline>
+        <source src="~/Media/Videos/Banner.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container">
+        <h1 class="hero-title">
+            WELCOME TO ACTN TENNIS ACADEMY
+        </h1>
+
+        <h2 class="hero-subtitle">
+            Professional Tennis Coaching in HCMC
+        </h2>
+
+        <div class="hero-customers">
+            <span class="customer-number"
+                  data-target="500">
+                0
+            </span>
+            <span class="customer-plus">+</span>
+
+            <div class="customer-label">
+                Khách hàng đã tin tưởng
+            </div>
+        </div>
+
+        <a asp-controller="Booking"
+           asp-action="Index"
+           class="btn btn-warning btn-lg hero-booking-btn">
+            Đặt lịch ngay
+        </a>
+    </div>
+</section>
+
+<style>
+    .hero-banner {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 72px);
+        min-height: 600px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        color: #fff;
+        text-align: right;
+    }
+
+    .hero-title,
+    .hero-subtitle,
+    .hero-contact,
+    .hero-customers,
+    .hero-booking-btn {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: heroSlideUp 0.7s ease-out forwards;
+    }
+
+    .hero-title {
+        margin-bottom: 20px;
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation-delay: 0.2s;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 20px;
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+        font-weight: 400;
+        animation-delay: 0.4s;
+    }
+
+    .hero-contact {
+        margin-bottom: 25px;
+        font-size: 1.15rem;
+        animation-delay: 0.6s;
+    }
+
+    .hero-contact a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .hero-contact a:hover {
+        text-decoration: underline;
+    }
+
+    .hero-customers {
+        margin-bottom: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: baseline;
+        animation-delay: 0.8s;
+    }
+
+    .customer-number {
+        font-size: clamp(2.2rem, 4vw, 3.8rem);
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .customer-plus {
+        margin-left: 3px;
+        color: #ffc107;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .customer-label {
+        flex-basis: 100%;
+        margin-top: 8px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.4;
+        opacity: 0.9;
+    }
+
+    .hero-booking-btn {
+        padding: 12px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        animation-delay: 1s;
+    }
+    @@keyframes heroSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @@media (max-width: 768px) {
+        .hero-banner {
+            height: calc(100vh - 65px);
+            min-height: 500px;
+        }
+
+        .hero-content {
+            padding: 20px 16px;
+        }
+
+        .hero-title {
+            margin-bottom: 15px;
+        }
+
+        .hero-subtitle {
+            margin-bottom: 15px;
+        }
+
+        .hero-contact {
+            margin-bottom: 20px;
+        }
+
+        .hero-customers {
+            margin-bottom: 25px;
+        }
+
+        .customer-label {
+            font-size: 0.9rem;
+        }
+
+        .hero-booking-btn {
+            padding: 10px 24px;
+            font-size: 1rem;
+        }
+    }
+</style>
+<script>
+    const counter = document.querySelector(".customer-number");
+
+    if (counter) {
+        const target = Number(counter.dataset.target);
+
+        const duration = 1500;
+        const delay = 800;
+
+        setTimeout(() => {
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+
+                const progress = Math.min(elapsed / duration, 1);
+
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+
+                const currentValue = Math.floor(target * easeOut);
+
+                counter.textContent =
+                    currentValue.toLocaleString("vi-VN");
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent =
+                        target.toLocaleString("vi-VN");
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }, delay);
+    }
+</script>

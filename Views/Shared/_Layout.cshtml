@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TennisBooking</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TennisBooking.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header id="siteHeader" class="site-header">
+        <nav class="navbar navbar-expand-lg site-navbar">
+            <div class="container">
+
+                <a class="navbar-brand d-flex align-items-center"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+                    <img src="~/media/Logo.png"
+                         alt="TennisBooking"
+                         height="45"
+                         class="d-inline-block align-text-top">
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-2">
+
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Trang chủ
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                Đặt sân
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown news-dropdown">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="newsDropdown"
+                               role="button"
+                               aria-expanded="false">
+                                Tin tức
+                            </a>
+
+                            <ul class="dropdown-menu"
+                                aria-labelledby="newsDropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="News"
+                                       asp-action="Tournament">
+                                        Giải đấu
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="News"
+                                       asp-action="TrainingCourt">
+                                        Sân tập
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="News"
+                                       asp-action="Promotion">
+                                        Khuyến mãi
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Privacy">
+                                Về chúng tôi
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="languageDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                VN
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end"
+                                aria-labelledby="languageDropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="#"
+                                       data-language="vi">
+                                        VN
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       href="#"
+                                       data-language="en">
+                                        ENG
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - TennisBooking - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<script>
+    const header = document.getElementById("siteHeader");
+
+    function handleHeaderScroll() {
+    if (window.scrollY > 80) {
+    header.classList.add("header-scrolled");
+    } else {
+    header.classList.remove("header-scrolled");
+    }
+    }
+
+    window.addEventListener("scroll", handleHeaderScroll);
+
+    handleHeaderScroll();
+</script>
