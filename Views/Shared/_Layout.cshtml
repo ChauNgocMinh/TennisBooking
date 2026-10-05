@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,7 @@
                         data-bs-target="#mainNavbar"
                         aria-controls="mainNavbar"
                         aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        aria-label="Mở menu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -43,16 +43,16 @@
                                asp-area=""
                                asp-controller="Home"
                                asp-action="Index">
-                                Trang chủ
+                                <span data-i18n="nav.home">Trang chủ</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link"
                                asp-area=""
-                               asp-controller="Home"
-                               asp-action="Privacy">
-                                Đặt sân
+                               asp-controller="Coach"
+                               asp-action="Index">
+                                <span data-i18n="nav.coaches">Huấn luyện viên</span>
                             </a>
                         </li>
 
@@ -62,7 +62,7 @@
                                id="newsDropdown"
                                role="button"
                                aria-expanded="false">
-                                Tin tức
+                                <span data-i18n="nav.news">Tin tức</span>
                             </a>
 
                             <ul class="dropdown-menu"
@@ -72,7 +72,7 @@
                                     <a class="dropdown-item"
                                        asp-controller="News"
                                        asp-action="Tournament">
-                                        Giải đấu
+                                        <span data-i18n="nav.tournament">Giải đấu</span>
                                     </a>
                                 </li>
 
@@ -80,7 +80,7 @@
                                     <a class="dropdown-item"
                                        asp-controller="News"
                                        asp-action="TrainingCourt">
-                                        Sân tập
+                                        <span data-i18n="nav.training">Sân tập</span>
                                     </a>
                                 </li>
 
@@ -88,7 +88,7 @@
                                     <a class="dropdown-item"
                                        asp-controller="News"
                                        asp-action="Promotion">
-                                        Khuyến mãi
+                                        <span data-i18n="nav.promotion">Khuyến mãi</span>
                                     </a>
                                 </li>
                             </ul>
@@ -98,8 +98,8 @@
                             <a class="nav-link"
                                asp-area=""
                                asp-controller="Home"
-                               asp-action="Privacy">
-                                Về chúng tôi
+                               asp-action="About">
+                                <span data-i18n="nav.about">Về chúng tôi</span>
                             </a>
                         </li>
 
@@ -120,7 +120,7 @@
                                     <a class="dropdown-item"
                                        href="#"
                                        data-language="vi">
-                                        VN
+                                        <span data-i18n="language.vietnamese">VN</span>
                                     </a>
                                 </li>
 
@@ -128,7 +128,7 @@
                                     <a class="dropdown-item"
                                        href="#"
                                        data-language="en">
-                                        ENG
+                                        <span data-i18n="language.english">ENG</span>
                                     </a>
                                 </li>
                             </ul>
@@ -145,13 +145,34 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - TennisBooking - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="site-footer">
+        <div class="container site-footer-grid">
+            <div>
+                <a class="site-footer-brand" asp-controller="Home" asp-action="Index">ACE TENNIS ACADEMY</a>
+                <p data-i18n="footer.tagline">Nơi kết nối đam mê tennis.</p>
+            </div>
+            <div>
+                <h2 data-i18n="footer.explore">Khám phá</h2>
+                <a asp-controller="Coach" asp-action="Index" data-i18n="nav.coaches">Huấn luyện viên</a>
+                <a asp-controller="Home" asp-action="About" data-i18n="nav.about">Về chúng tôi</a>
+                <a asp-controller="Home" asp-action="Privacy" data-i18n="footer.privacy">Chính sách bảo mật</a>
+            </div>
+            <div>
+                <h2 data-i18n="footer.contact">Liên hệ</h2>
+                <a href="tel:+84900000000">0900 000 000</a>
+                <a href="mailto:hello@ACEtennis.vn">hello@ACEtennis.vn</a>
+                <span data-i18n="footer.address">TP. Hồ Chí Minh</span>
+            </div>
+        </div>
+        <div class="container site-footer-bottom">
+            <span>&copy; 2026 ACE Tennis Academy</span>
+            <span data-i18n="footer.rights">Bảo lưu mọi quyền.</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/booking-week.js" asp-append-version="true"></script>
+    <script src="~/js/booking-validation.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

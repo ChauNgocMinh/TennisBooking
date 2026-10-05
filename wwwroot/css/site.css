@@ -1,0 +1,170 @@
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Shared site header */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  animation: navReveal 0.65s ease-out 0.25s both;
+}
+
+.site-navbar {
+  min-height: 72px;
+  padding: 10px 0;
+  background: transparent;
+}
+
+.site-header .nav-link {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link.active {
+  color: #ffc107;
+}
+
+.site-header.header-scrolled {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: headerSlideDown 0.4s ease forwards;
+}
+
+.site-header.header-scrolled .nav-link {
+  color: #222;
+}
+
+.site-header.header-scrolled .nav-link:hover,
+.site-header.header-scrolled .nav-link.active {
+  color: #d39e00;
+}
+
+@keyframes headerSlideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes navReveal {
+  from { opacity: 0; transform: translateY(-100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.news-dropdown .dropdown-menu { min-width: 180px; }
+.news-dropdown .dropdown-item { padding: 10px 18px; }
+.news-dropdown .dropdown-item:hover { background-color: #f5f5f5; }
+@media (min-width: 992px) {
+  .news-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+
+  .news-dropdown:hover > .nav-link { color: #ffc107; }
+  .site-header.header-scrolled .news-dropdown:hover > .nav-link { color: #d39e00; }
+}
+@media (max-width: 991px) {
+  .site-header .navbar-collapse {
+    margin-top: 10px;
+    padding: 15px;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 8px;
+  }
+
+  .site-header.header-scrolled .navbar-collapse {
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .site-header.header-scrolled .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Inner pages and footer */
+.page-hero {
+    display: flex;
+    align-items: center;
+    min-height: 300px;
+    padding: 120px 0 56px;
+    color: #fff;
+    background: linear-gradient(120deg, #102a43, #1d6f5f);
+}
+
+.page-hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+}
+
+.page-hero p:last-child {
+    max-width: 620px;
+    margin: 14px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.1rem;
+}
+
+.page-hero-eyebrow {
+    margin: 0 0 10px;
+    color: #f5c542;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.content-section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+}
+
+.narrow-content { max-width: 900px; }
+.content-section h2 { color: #17202a; font-weight: 700; }
+.content-section p { color: #68727d; line-height: 1.8; }
+
+.site-footer {
+    margin-top: auto;
+    padding: 48px 0 20px;
+    color: #d7e1e8;
+    background: #102a43;
+}
+
+.site-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 32px;
+}
+
+.site-footer-brand { color: #fff; font-size: 1.05rem; font-weight: 800; text-decoration: none; letter-spacing: 0.06em; }
+.site-footer p { max-width: 240px; color: #9fb1bf; }
+.site-footer h2 { margin: 0 0 14px; color: #fff; font-size: 0.86rem; text-transform: uppercase; letter-spacing: 0.12em; }
+.site-footer a,
+.site-footer span { display: block; width: fit-content; margin-bottom: 9px; color: #b9c8d3; text-decoration: none; }
+.site-footer a:hover { color: #f5c542; }
+.site-footer-bottom { display: flex; justify-content: space-between; gap: 16px; margin-top: 38px; padding-top: 18px; color: #8298a8; border-top: 1px solid rgba(255,255,255,.12); font-size: .82rem; }
+
+@media (max-width: 768px) {
+    .site-footer-bottom { display: block; }
+    .site-footer-bottom span { margin-bottom: 5px; }
+}
+

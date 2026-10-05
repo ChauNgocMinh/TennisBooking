@@ -1,0 +1,69 @@
+@model IReadOnlyCollection<TennisBooking.ViewModels.CoachViewModel>
+@{
+    ViewData["Title"] = "Huấn luyện viên";
+}
+
+<section class="page-hero coach-page-hero">
+    <div class="container">
+        <p class="page-hero-eyebrow" data-i18n="coach.eyebrow">ĐỘI NGŨ ACTN</p>
+        <h1 data-i18n="coach.title">Huấn luyện viên</h1>
+        <p data-i18n="coach.description">Gặp gỡ những người đồng hành giúp bạn chơi tốt hơn mỗi ngày.</p>
+    </div>
+</section>
+
+<main class="container content-section coach-page">
+    <div class="coach-intro">
+        <p class="schedule-eyebrow" data-i18n="coach.sectionEyebrow">ĐỒNG HÀNH CÙNG BẠN</p>
+        <h2 data-i18n="coach.sectionTitle">Kinh nghiệm thật, lộ trình phù hợp</h2>
+        <p data-i18n="coach.sectionDescription">Mỗi huấn luyện viên tại ACTN mang đến một thế mạnh riêng, cùng chung mục tiêu giúp học viên tiến bộ bền vững.</p>
+    </div>
+
+    <div class="coach-grid">
+        @foreach (var coach in Model)
+        {
+            <article class="coach-card">
+                <div class="coach-card-image-wrap">
+                    <img class="coach-card-image" src="@coach.ImageUrl" alt="@coach.Name" loading="lazy" />
+                </div>
+                <div class="coach-card-body">
+                    <h2>@coach.Name</h2>
+                    <p class="coach-experience">@coach.Experience</p>
+                    <div class="coach-detail">
+                        <h3 data-i18n="coach.certificates">Chứng chỉ</h3>
+                        <p>@coach.Certificates</p>
+                    </div>
+                    <div class="coach-detail">
+                        <h3 data-i18n="coach.achievements">Thành tựu</h3>
+                        <p>@coach.Achievements</p>
+                    </div>
+                    <div class="coach-introduction">
+                        <h3 data-i18n="coach.introduction">Giới thiệu</h3>
+                        @Html.Raw(coach.IntroductionHtml)
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</main>
+
+<style>
+    .coach-page-hero { background: linear-gradient(120deg, #102a43, #1d6f5f); }
+    .coach-page { padding-top: 72px; }
+    .coach-intro { max-width: 720px; margin-bottom: 34px; }
+    .coach-intro h2 { margin: 0; color: #17202a; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; }
+    .coach-intro > p:last-child { margin: 12px 0 0; color: #68727d; line-height: 1.7; }
+    .coach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .coach-card { overflow: hidden; background: #fff; border: 1px solid #e5e9ed; border-radius: 18px; box-shadow: 0 14px 40px rgba(25,39,52,.08); }
+    .coach-card-image-wrap { aspect-ratio: 4 / 4.6; overflow: hidden; background: #dfe9e6; }
+    .coach-card-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .coach-card-body { padding: 24px; }
+    .coach-card-body > h2 { margin: 0; color: #17202a; font-size: 1.35rem; }
+    .coach-experience { margin: 7px 0 22px; color: #198754; font-size: .88rem; font-weight: 700; line-height: 1.5; }
+    .coach-detail, .coach-introduction { padding-top: 16px; border-top: 1px solid #edf0f2; }
+    .coach-detail + .coach-detail, .coach-introduction { margin-top: 16px; }
+    .coach-detail h3, .coach-introduction h3 { margin: 0 0 6px; color: #68727d; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+    .coach-detail p, .coach-introduction p { margin: 0; color: #4f5a65; font-size: .9rem; line-height: 1.65; }
+    .coach-introduction p + p { margin-top: 8px; }
+    @@media (max-width: 992px) { .coach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @@media (max-width: 640px) { .coach-page { padding-top: 52px; } .coach-grid { grid-template-columns: 1fr; } }
+</style>

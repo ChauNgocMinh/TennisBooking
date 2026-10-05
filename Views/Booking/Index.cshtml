@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Đặt sân";
+}
+
+<section class="page-hero page-hero-booking">
+    <div class="container">
+        <p class="page-hero-eyebrow" data-i18n="booking.eyebrow">ĐẶT LỊCH</p>
+        <h1 data-i18n="booking.title">Đặt sân tennis</h1>
+        <p data-i18n="booking.description">Chọn ngày, loại lớp và khung giờ phù hợp với bạn.</p>
+    </div>
+</section>
+
+<main class="container content-section">
+    <div class="booking-layout">
+        <section class="booking-form-card">
+            <h2 data-i18n="booking.formTitle">Thông tin đặt sân</h2>
+            <form>
+                <div class="form-grid">
+                    <label><span data-i18n="booking.name">Họ và tên</span><input type="text" required placeholder="Nguyễn Văn A" /></label>
+                    <label><span data-i18n="booking.phone">Số điện thoại</span><input type="tel" required placeholder="0900 000 000" /></label>
+                    <label><span data-i18n="schedule.date">Ngày học</span><input type="date" required /></label>
+                    <label><span data-i18n="schedule.classType">Loại lớp</span><select><option data-i18n="schedule.private">Lớp cá nhân</option><option data-i18n="schedule.group">Lớp nhóm</option><option data-i18n="schedule.kids">Lớp trẻ em</option></select></label>
+                </div>
+                <label><span data-i18n="booking.note">Ghi chú</span><textarea rows="4" placeholder="Bạn muốn chia sẻ thêm điều gì?"></textarea></label>
+                <button class="btn btn-warning" type="submit" data-i18n="booking.submit">Gửi yêu cầu đặt sân</button>
+            </form>
+        </section>
+        <aside class="booking-aside">
+            <h2 data-i18n="booking.helpTitle">Bạn cần hỗ trợ?</h2>
+            <p data-i18n="booking.helpText">Đội ngũ ACE sẽ liên hệ để xác nhận sân và khung giờ của bạn.</p>
+            <a href="tel:+84900000000" class="booking-contact">0900 000 000</a>
+        </aside>
+    </div>
+</main>
+
+<style>
+    .booking-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(240px, .8fr); gap: 24px; }
+    .booking-form-card, .booking-aside { padding: clamp(22px, 4vw, 34px); background: #fff; border: 1px solid #e5e9ed; border-radius: 18px; box-shadow: 0 14px 40px rgba(25,39,52,.07); }
+    .booking-form-card h2, .booking-aside h2 { margin: 0 0 22px; font-size: 1.35rem; }
+    .booking-form-card form { display: grid; gap: 18px; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .booking-form-card label { display: grid; gap: 7px; color: #56616c; font-size: .86rem; font-weight: 600; }
+    .booking-form-card input, .booking-form-card select, .booking-form-card textarea { width: 100%; padding: 11px 12px; color: #26313b; border: 1px solid #d9e0e6; border-radius: 8px; font: inherit; font-weight: 400; }
+    .booking-form-card textarea { resize: vertical; }
+    .booking-contact { color: #198754; font-size: 1.2rem; font-weight: 700; text-decoration: none; }
+    @@media (max-width: 768px) { .booking-layout, .form-grid { grid-template-columns: 1fr; } }
+</style>

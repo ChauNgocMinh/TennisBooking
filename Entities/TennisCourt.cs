@@ -6,6 +6,9 @@ namespace TennisBooking.Entities
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
+
+        public string CourtType { get; set; } = string.Empty;
+
         public decimal Price { get; set; }
     }
 }
