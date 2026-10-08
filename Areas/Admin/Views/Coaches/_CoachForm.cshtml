@@ -1,0 +1,57 @@
+@model AdminCoachViewModel
+
+<div class="admin-form-card">
+    <h1 data-i18n="admin.coachForm">Trainer details</h1>
+    <form asp-action="Save" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+        <input asp-for="ImageUrl" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="admin-form-grid">
+            <div class="admin-field">
+                <label asp-for="Name" data-i18n="admin.name">Name</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="admin-field">
+                <label asp-for="ImageFile" data-i18n="admin.imageUpload">Trainer image</label>
+                <input asp-for="ImageFile" type="file" accept=".jpg,.jpeg,.png,.webp,.gif" />
+                <small data-i18n="admin.imageHint">JPG, PNG, WEBP or GIF, up to 5 MB.</small>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="admin-field">
+                <label asp-for="Experience" data-i18n="admin.experience">Experience</label>
+                <input asp-for="Experience" />
+                <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+            <div class="admin-field">
+                <label asp-for="Certificates" data-i18n="admin.certificates">Certificates</label>
+                <input asp-for="Certificates" />
+                <span asp-validation-for="Certificates" class="text-danger"></span>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <div class="admin-existing-image">
+                <img src="@Model.ImageUrl" alt="" />
+                <span data-i18n="admin.currentImage">Current image</span>
+            </div>
+        }
+
+        <div class="admin-field">
+            <label asp-for="Achievements" data-i18n="admin.achievements">Achievements</label>
+            <input asp-for="Achievements" />
+            <span asp-validation-for="Achievements" class="text-danger"></span>
+        </div>
+
+        <label data-i18n="admin.introduction">Introduction</label>
+        <partial name="_RichTextEditor" model="new RichTextEditorViewModel { FieldName = nameof(Model.IntroductionHtml), Html = Model.IntroductionHtml }" />
+
+        <div class="admin-form-actions">
+            <a asp-action="Index" data-i18n="admin.cancel">Cancel</a>
+            <button class="admin-primary" type="submit" data-i18n="admin.save">Save</button>
+        </div>
+    </form>
+</div>

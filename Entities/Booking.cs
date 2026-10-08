@@ -1,4 +1,5 @@
 ﻿using TennisBooking.Common;
+using TennisBooking.Common.Enum;
 
 namespace TennisBooking.Entities
 {
@@ -14,7 +15,7 @@ namespace TennisBooking.Entities
 
         public DateTime EndTime { get; set; }
 
-        public bool Status { get; set; }
+        public BookingStatus Status { get; set; }
 
         public ICollection<CourtSlot> Slots { get; set; } = new List<CourtSlot>();
 

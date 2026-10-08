@@ -1,0 +1,22 @@
+@model AdminLoginViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin login";
+}
+<div class="admin-login-card">
+    <p class="admin-kicker" data-i18n="admin.kicker">ACE TENNIS ACADEMY</p>
+    <h1 data-i18n="admin.loginTitle">Admin login</h1>
+    <p data-i18n="admin.loginDescription">Sign in to manage your tennis academy.</p>
+    <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+        <input asp-for="ReturnUrl" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger" data-i18n="admin.loginInvalid"></div>
+        <label asp-for="Email" data-i18n="admin.email">Email</label>
+        <input asp-for="Email" autocomplete="username" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <label asp-for="Password" data-i18n="admin.password">Password</label>
+        <input asp-for="Password" autocomplete="current-password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <button class="admin-primary" type="submit" data-i18n="admin.login">Sign in</button>
+    </form>
+</div>

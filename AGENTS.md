@@ -244,6 +244,13 @@ Views should:
 - Display validation messages.
 - Use partial views where appropriate.
 
+### Razor Formatting
+
+- Format `.cshtml` markup with each newly opened HTML/Razor element on its own line when the block has meaningful content or attributes.
+- Short, simple inline elements may share one line when doing so improves readability.
+- Do not keep complete forms, cards, sections, or repeated component markup as one long line.
+- Preserve Razor expressions and indentation so nested markup is easy to scan.
+
 Views should NOT:
 
 - Query the database.
@@ -832,6 +839,8 @@ Use the current project authentication/authorization pattern if one already exis
 Do not introduce a new authentication system unless explicitly requested.
 
 ## Do Not Over-Engineer
+
+- Do not create documentation, planning, spec, or other auxiliary files unless the user explicitly requests them or the file is required at runtime/build time. Keep implementation changes limited to necessary project files.
 
 Do not introduce these unless explicitly requested or already used:
 

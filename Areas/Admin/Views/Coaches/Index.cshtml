@@ -1,0 +1,43 @@
+@model IReadOnlyCollection<AdminCoachViewModel>
+
+@{ ViewData["Title"] = "Trainers"; }
+
+<div class="admin-page">
+    <div class="admin-page-header">
+        <h1 data-i18n="admin.coaches">Trainers</h1>
+        <a class="admin-primary" asp-action="Create" data-i18n="admin.add">Add new</a>
+    </div>
+
+    <div class="admin-surface">
+        <table class="table admin-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-i18n="admin.name">Name</th>
+                    <th data-i18n="admin.experience">Experience</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img class="admin-table-image" src="@item.ImageUrl" alt="" loading="lazy" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Experience</td>
+                        <td class="admin-actions">
+                            <a asp-action="Edit" asp-route-id="@item.Id" data-i18n="admin.edit">Edit</a>
+                            <form asp-action="Delete" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" data-i18n="admin.delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

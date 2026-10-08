@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - ACE Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+</head>
+<body class="admin-shell">
+    <aside class="admin-sidebar">
+        <a class="admin-brand" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">ACE ADMIN</a>
+        <nav>
+            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" data-i18n="admin.dashboard">Dashboard</a>
+            <a asp-area="Admin" asp-controller="Courts" asp-action="Index" data-i18n="admin.courts">Courts</a>
+            <a asp-area="Admin" asp-controller="Coaches" asp-action="Index" data-i18n="admin.coaches">Trainers</a>
+            <a asp-area="Admin" asp-controller="News" asp-action="Index" data-i18n="admin.news">News</a>
+            <a asp-area="Admin" asp-controller="Bookings" asp-action="Index" data-i18n="admin.bookings">Bookings</a>
+        </nav>
+        <form asp-area="Admin" asp-controller="Account" asp-action="Logout" method="post">
+            @Html.AntiForgeryToken()
+            <button class="admin-logout" type="submit" data-i18n="admin.logout">Log out</button>
+        </form>
+    </aside>
+    <main class="admin-content">
+        <div class="admin-toolbar">
+            <span data-i18n="admin.panel">Management panel</span>
+            <div>
+                <button type="button" data-language="vi">VN</button>
+                <button type="button" data-language="en">EN</button>
+            </div>
+        </div>
+        @if (TempData["AdminError"] is string adminError)
+        {
+            <div class="alert alert-warning" data-i18n="@adminError">@adminError</div>
+        }
+        @RenderBody()
+    </main>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/admin-rich-text.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

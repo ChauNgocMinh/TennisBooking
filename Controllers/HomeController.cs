@@ -1,22 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using TennisBooking.Services;
+using TennisBooking.ViewModels;
 
-namespace TennisBooking.Controllers
+namespace TennisBooking.Controllers;
+
+public class HomeController(INewsService newsService) : Controller
 {
-    public class HomeController : Controller
+    public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
-        public IActionResult Index()
+        return View(new HomeViewModel
         {
-            return View();
-        }
+            LatestNews = (await newsService.GetAllAsync(cancellationToken)).Take(3).ToList()
+        });
+    }
 
-        public IActionResult About()
-        {
-            return View();
-        }
+    public IActionResult About()
+    {
+        return View();
+    }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+    public IActionResult Privacy()
+    {
+        return View();
     }
 }

@@ -1,0 +1,52 @@
+@model TennisBooking.ViewModels.NewsDetailsViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết tin tức";
+}
+
+<section class="news-detail-hero">
+    <div class="container">
+        <p class="page-hero-eyebrow" data-i18n="news.eyebrow">TIN TỨC</p>
+        <h1 class="news-detail-title" data-news-title-vi="@Model.News.TitleVi" data-news-title-en="@Model.News.TitleEn"></h1>
+        <time class="news-detail-hero-date">@Model.News.PublishedAt.ToString("dd/MM/yyyy")</time>
+    </div>
+</section>
+
+<main class="container content-section news-detail-page">
+    <article class="news-detail">
+        <img class="news-detail-banner" src="@Model.News.BannerImageUrl" alt="" loading="eager" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+        <div class="news-detail-body">
+            <div class="news-detail-content" data-news-content-vi="@Model.News.ContentVi" data-news-content-en="@Model.News.ContentEn"></div>
+            <div class="news-detail-actions">
+                <a class="news-read-more" asp-controller="News" asp-action="Index">
+                    <span aria-hidden="true">↙</span>
+                    <span data-i18n="news.backToNews">Quay lại tin tức</span>
+                </a>
+            </div>
+        </div>
+    </article>
+
+    @if (Model.RelatedNews.Count > 0)
+    {
+        <section class="related-news-section">
+            <div class="news-section-heading">
+                <span data-i18n="news.relatedTitle">Tin tức liên quan</span>
+                <i></i>
+            </div>
+            <div class="related-news-grid">
+                @foreach (var item in Model.RelatedNews)
+                {
+                    <article class="related-news-card">
+                        <a asp-controller="News" asp-action="Details" asp-route-id="@item.Id">
+                            <img src="@item.BannerImageUrl" alt="" loading="lazy" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+                            <div class="related-news-card-body">
+                                <h2 data-news-title-vi="@item.TitleVi" data-news-title-en="@item.TitleEn"></h2>
+                                <time class="news-index-date">@item.PublishedAt.ToString("dd/MM/yyyy")</time>
+                            </div>
+                        </a>
+                    </article>
+                }
+            </div>
+        </section>
+    }
+</main>

@@ -1,0 +1,43 @@
+@model IReadOnlyCollection<AdminNewsViewModel>
+
+@{
+    ViewData["Title"] = "News";
+}
+<div class="admin-page-header">
+    <h1 data-i18n="admin.news">News</h1>
+    <a class="admin-primary" asp-action="Create" data-i18n="admin.add">Add new</a>
+</div>
+<div class="admin-table-wrap">
+    <table class="table admin-table">
+        <thead>
+                <tr>
+                <th></th>
+                <th data-i18n="admin.titleVi">Vietnamese title</th>
+                <th data-i18n="admin.titleEn">English title</th>
+                <th data-i18n="admin.publishedAt">Published</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img class="admin-table-image admin-table-banner" src="@item.BannerImageUrl" alt="" loading="lazy" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+                    </td>
+                    <td>@item.TitleVi</td>
+                    <td>@item.TitleEn</td>
+                    <td>@item.PublishedAt.ToString("dd/MM/yyyy")</td>
+                    <td class="admin-actions">
+                        <a asp-action="Edit" asp-route-id="@item.Id" data-i18n="admin.edit">Edit</a>
+                        <form asp-action="Delete" method="post" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" data-i18n="admin.delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

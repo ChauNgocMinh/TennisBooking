@@ -56,42 +56,13 @@
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown news-dropdown">
-                            <a class="nav-link dropdown-toggle"
-                               href="#"
-                               id="newsDropdown"
-                               role="button"
-                               aria-expanded="false">
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="News"
+                               asp-action="Index">
                                 <span data-i18n="nav.news">Tin tức</span>
                             </a>
-
-                            <ul class="dropdown-menu"
-                                aria-labelledby="newsDropdown">
-
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="News"
-                                       asp-action="Tournament">
-                                        <span data-i18n="nav.tournament">Giải đấu</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="News"
-                                       asp-action="TrainingCourt">
-                                        <span data-i18n="nav.training">Sân tập</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item"
-                                       asp-controller="News"
-                                       asp-action="Promotion">
-                                        <span data-i18n="nav.promotion">Khuyến mãi</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li class="nav-item">
@@ -148,22 +119,45 @@
     <footer class="site-footer">
         <div class="container site-footer-grid">
             <div>
-                <a class="site-footer-brand" asp-controller="Home" asp-action="Index">ACE TENNIS ACADEMY</a>
+                <a class="site-footer-brand" asp-controller="Home" asp-action="Index">
+                    ACE TENNIS ACADEMY
+                </a>
                 <p data-i18n="footer.tagline">Nơi kết nối đam mê tennis.</p>
             </div>
+
             <div>
                 <h2 data-i18n="footer.explore">Khám phá</h2>
-                <a asp-controller="Coach" asp-action="Index" data-i18n="nav.coaches">Huấn luyện viên</a>
-                <a asp-controller="Home" asp-action="About" data-i18n="nav.about">Về chúng tôi</a>
-                <a asp-controller="Home" asp-action="Privacy" data-i18n="footer.privacy">Chính sách bảo mật</a>
+                <a asp-controller="Coach" asp-action="Index" data-i18n="nav.coaches">
+                    Huấn luyện viên
+                </a>
+                <a asp-controller="Home" asp-action="About" data-i18n="nav.about">
+                    Về chúng tôi
+                </a>
+                <a asp-controller="Home" asp-action="Privacy" data-i18n="footer.privacy">
+                    Chính sách bảo mật
+                </a>
             </div>
+
             <div>
-                <h2 data-i18n="footer.contact">Liên hệ</h2>
-                <a href="tel:+84900000000">0900 000 000</a>
-                <a href="mailto:hello@ACEtennis.vn">hello@ACEtennis.vn</a>
-                <span data-i18n="footer.address">TP. Hồ Chí Minh</span>
+                <h2>VĂN PHÒNG GIAO DỊCH</h2>
+                <span>
+                    45 Ngô Quang Huy, phường Thảo Điền,<br>
+                    TP. Thủ Đức, TP. HCM
+                </span>
+
+                <h2>CLB TENNIS ACE SPORT</h2>
+                <span>
+                    Đường 18 Khu đô thị Vạn Phúc,<br>
+                    phường Hiệp Bình Phước, TP. Thủ Đức, TP.HCM
+                </span>
+
+                <a href="tel:+84909000080">📱 0909.000.080 - 0819.909.000</a>
+                <a href="http://acesport.net">🌐 http://acesport.net</a>
+                <a href="mailto:acesportcorp@gmail.com">✉️ acesportcorp@gmail.com</a>
+                <a href="https://www.facebook.com/ACEsportcorp">ⓕ ACEsportcorp</a>
             </div>
         </div>
+
         <div class="container site-footer-bottom">
             <span>&copy; 2026 ACE Tennis Academy</span>
             <span data-i18n="footer.rights">Bảo lưu mọi quyền.</span>

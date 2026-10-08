@@ -28,7 +28,7 @@ public sealed class BookingService(ApplicationDbContext context) : IBookingServi
                 && slot.SlotStart < weekEnd
                 && slot.BookingId != null
                 && slot.Booking != null
-                && slot.Booking.Status)
+                && slot.Booking.Status == TennisBooking.Common.Enum.BookingStatus.Confirmed)
             .OrderBy(slot => slot.SlotStart)
             .Select(slot => slot.SlotStart)
             .ToListAsync(cancellationToken);
@@ -63,7 +63,7 @@ public sealed class BookingService(ApplicationDbContext context) : IBookingServi
                 && requestedSlots.Contains(slot.SlotStart)
                 && slot.BookingId != null
                 && slot.Booking != null
-                && slot.Booking.Status)
+                && slot.Booking.Status == TennisBooking.Common.Enum.BookingStatus.Pending)
             .Select(slot => slot.SlotStart)
             .ToListAsync(cancellationToken);
 
@@ -80,7 +80,7 @@ public sealed class BookingService(ApplicationDbContext context) : IBookingServi
             PhoneNumber = request.PhoneNumber.Trim(),
             StartTime = date.AddHours(request.StartHour),
             EndTime = date.AddHours(request.EndHour),
-            Status = true,
+            Status = TennisBooking.Common.Enum.BookingStatus.Pending,
             CreateFrom = Guid.Empty,
             UpdateFrom = Guid.Empty
         }).ToArray();

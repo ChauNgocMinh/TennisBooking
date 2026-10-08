@@ -1,0 +1,17 @@
+@model RichTextEditorViewModel
+
+<div class="rich-editor" data-rich-editor>
+    <div class="rich-toolbar">
+        <button type="button" data-command="bold"><b>B</b></button>
+        <button type="button" data-command="italic"><i>I</i></button>
+        <button type="button" data-command="underline"><u>U</u></button>
+        <button type="button" data-command="formatBlock" data-value="h3">H</button>
+        <button type="button" data-command="insertUnorderedList">•</button>
+        <button type="button" data-command="createLink" data-prompt="admin.linkPrompt">↗</button>
+        <button type="button" data-command="insertImage" data-prompt="admin.imagePrompt">▧</button>
+    </div>
+    <div class="rich-content" contenteditable="true" data-editor-content>
+        @Html.Raw(Model.Html)
+    </div>
+    <textarea name="@Model.FieldName" class="rich-value" data-editor-value></textarea>
+</div>

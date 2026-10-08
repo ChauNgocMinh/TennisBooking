@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model TennisBooking.ViewModels.HomeViewModel
+
 <section class="hero-banner">
     <!-- Background Video -->
     <video class="hero-video"
@@ -79,10 +81,27 @@
     </div>
 </div>
 
+<section class="home-about-section">
+    <div class="container home-about-grid">
+        <div class="home-about-image">
+            <img src="~/media/team-coach.jpg" alt="" loading="lazy" />
+        </div>
+        <div class="home-about-copy">
+            <h2 data-i18n="home.aboutTitle">Một đội ngũ đáng tin cậy cho hành trình tennis của bạn</h2>
+            <p data-i18n="home.aboutText">ACE Tennis Academy được xây dựng với mong muốn đưa việc học tennis trở nên rõ ràng, gần gũi và bền vững hơn cho mọi trình độ. Chúng tôi tin rằng tennis không chỉ là một môn thể thao, mà còn là hành trình rèn luyện sức khỏe, sự kiên trì, khả năng tập trung và tinh thần vượt qua giới hạn của chính mình.</p>
+            <div class="home-about-stats">
+                <div><strong data-i18n="home.yearsValue">Nhiều năm</strong><span data-i18n="home.yearsLabel">đồng hành cùng tennis</span></div>
+                <div><strong data-i18n="home.customersValue">500+</strong><span data-i18n="home.customersLabel">học viên đã tin tưởng</span></div>
+                <div><strong data-i18n="home.trustValue">4.9/5</strong><span data-i18n="home.trustLabel">mức độ tin cậy từ học viên</span></div>
+            </div>
+            <a class="home-section-link" asp-controller="Home" asp-action="About" data-i18n="home.aboutLink">Tìm hiểu về ACE</a>
+        </div>
+    </div>
+</section>
+
 <section id="schedule-section" class="schedule-section container" aria-labelledby="schedule-title">
     <div class="schedule-header">
         <div>
-            <p class="schedule-eyebrow" data-i18n="schedule.eyebrow">ĐẶT LỊCH LINH HOẠT</p>
             <h2 id="schedule-title" data-i18n="schedule.title">Chọn khung giờ học</h2>
             <p class="schedule-description" data-i18n="schedule.description">Chọn giờ bắt đầu và giờ kết thúc để xem khoảng thời gian bạn muốn đăng ký.</p>
         </div>
@@ -136,6 +155,34 @@
     </div>
 </section>
 
+<section class="home-news-section" aria-labelledby="home-news-title">
+    <div class="container">
+        <div class="home-section-heading">
+            <div>
+                <h2 id="home-news-title" data-i18n="home.newsTitle">Tin mới nhất</h2>
+            </div>
+            <a class="home-section-link" asp-controller="News" asp-action="Index" data-i18n="home.newsLink">Xem tất cả</a>
+        </div>
+        <div class="home-news-grid">
+            @foreach (var item in Model.LatestNews)
+            {
+                <article class="home-news-card">
+                    <a class="home-news-image" asp-controller="News" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.BannerImageUrl" alt="" loading="lazy" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+                    </a>
+                    <div class="home-news-card-body">
+                        <a class="home-news-title" asp-controller="News" asp-action="Details" asp-route-id="@item.Id">
+                            <h3 data-news-title-vi="@item.TitleVi" data-news-title-en="@item.TitleEn"></h3>
+                        </a>
+                        <time datetime="@item.PublishedAt.ToString("yyyy-MM-dd")">@item.PublishedAt.ToString("dd/MM/yyyy")</time>
+                        <p data-news-content-vi="@item.ShortContentVi" data-news-content-en="@item.ShortContentEn"></p>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
 <style>
     .hero-banner { position: relative; display: flex; align-items: center; width: 100%; height: 100vh; height: 100svh; height: 100dvh; min-height: 100vh; min-height: 100svh; overflow: hidden; }
     .hero-video { position: absolute; top: 50%; left: 50%; z-index: 1; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); }
@@ -166,10 +213,14 @@
     .booking-week-option input { accent-color: #198754; }
     .weekly-booking-modal .modal-footer { padding: 14px 28px 24px; border-top: 0; }
     @@keyframes heroSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .schedule-section { padding-top: 72px; padding-bottom: 80px; }
+
+    .schedule-section {
+        padding-top: 72px;
+        padding-bottom: 80px;
+    }
     .schedule-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 28px; }
     .schedule-eyebrow { margin: 0 0 8px; color: #b8860b; font-size: .78rem; font-weight: 700; letter-spacing: .16em; }
-    .schedule-header h2 { margin: 0; color: #17202a; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; }
+    .schedule-header h2 { margin: 0; color: #17202a; font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 700; line-height: 1.18; letter-spacing: -.025em; }
     .schedule-description { max-width: 560px; margin: 10px 0 0; color: #68727d; }
     .schedule-filters { display: flex; flex-wrap: wrap; gap: 12px; }
     .schedule-filters label { display: grid; gap: 6px; color: #5e6873; font-size: .78rem; font-weight: 600; }

@@ -1,0 +1,56 @@
+@model IReadOnlyCollection<TennisBooking.ViewModels.NewsViewModel>
+
+@{
+    ViewData["Title"] = "Tin tức";
+    var featured = Model.FirstOrDefault();
+}
+
+<section class="page-hero coach-page-hero">
+    <div class="container">
+        <p class="page-hero-eyebrow" data-i18n="news.eyebrow">TIN TỨC</p>
+        <h1 data-i18n="news.title">Tin tức mới nhất</h1>
+    </div>
+</section>
+<main class="container content-section news-editorial">
+    @if (featured is not null)
+    {
+        <article class="news-featured-card">
+            <a class="news-featured-media" asp-controller="News" asp-action="Details" asp-route-id="@featured.Id">
+                <img src="@featured.BannerImageUrl" alt="" loading="eager" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+            </a>
+            <div class="news-featured-copy">
+                <a class="news-title-link" asp-controller="News" asp-action="Details" asp-route-id="@featured.Id">
+                    <h2 data-news-title-vi="@featured.TitleVi" data-news-title-en="@featured.TitleEn"></h2>
+                </a>
+                <time class="news-index-date" datetime="@featured.PublishedAt.ToString("yyyy-MM-dd")">@featured.PublishedAt.ToString("dd/MM/yyyy")</time>
+                <p class="news-index-content" data-news-content-vi="@featured.ShortContentVi" data-news-content-en="@featured.ShortContentEn"></p>
+            </div>
+        </article>
+    }
+
+    @if (Model.Count > 1)
+    {
+        <div class="news-section-heading">
+            <span data-i18n="news.latestLabel">MỚI NHẤT</span>
+            <i></i>
+        </div>
+
+        <div class="news-editorial-grid">
+            @foreach (var item in Model.Skip(1))
+            {
+                <article class="news-editorial-card">
+                    <a class="news-editorial-media" asp-controller="News" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="@item.BannerImageUrl" alt="" loading="lazy" onerror="this.onerror=null;this.src='/media/Logo.png';" />
+                    </a>
+                    <div class="news-editorial-card-copy">
+                        <a class="news-title-link" asp-controller="News" asp-action="Details" asp-route-id="@item.Id">
+                            <h2 data-news-title-vi="@item.TitleVi" data-news-title-en="@item.TitleEn"></h2>
+                        </a>
+                        <time class="news-index-date" datetime="@item.PublishedAt.ToString("yyyy-MM-dd")">@item.PublishedAt.ToString("dd/MM/yyyy")</time>
+                        <p class="news-index-content" data-news-content-vi="@item.ShortContentVi" data-news-content-en="@item.ShortContentEn"></p>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</main>

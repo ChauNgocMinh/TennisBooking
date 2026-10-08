@@ -1,15 +1,18 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TennisBooking.Common;
 using TennisBooking.Entities;
 
 namespace TennisBooking.Data;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<IdentityUser>(options)
 {
     public DbSet<TennisCourt> TennisCourts => Set<TennisCourt>();
     public DbSet<Booking> Bookings => Set<Booking>();
     public DbSet<CourtSlot> CourtSlots => Set<CourtSlot>();
     public DbSet<Coach> Coaches => Set<Coach>();
+    public DbSet<News> News => Set<News>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -54,11 +57,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                     UpdateFrom = Guid.Empty
                 });
         });
-
+    
         modelBuilder.Entity<Booking>(entity =>
         {
             entity.Property(booking => booking.CustomerName).HasMaxLength(200).IsRequired();
             entity.Property(booking => booking.PhoneNumber).HasMaxLength(30).IsRequired();
+            entity.Property(booking => booking.Status).HasConversion<int>();
             entity.HasOne(booking => booking.Court)
                 .WithMany()
                 .HasForeignKey(booking => booking.CourtId)
@@ -120,6 +124,20 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                     CreateFrom = Guid.Empty,
                     UpdateFrom = Guid.Empty
                 });
+        });
+
+        modelBuilder.Entity<News>(entity =>
+        {
+            entity.Property(news => news.TitleVi).HasMaxLength(300).IsRequired();
+            entity.Property(news => news.TitleEn).HasMaxLength(300).IsRequired();
+            entity.Property(news => news.BannerImageUrl).HasMaxLength(500).IsRequired();
+            entity.Property(news => news.ShortContentVi).HasMaxLength(500).IsRequired();
+            entity.Property(news => news.ShortContentEn).HasMaxLength(500).IsRequired();
+            entity.Property(news => news.ContentVi).HasColumnType("nvarchar(max)").IsRequired();
+            entity.Property(news => news.ContentEn).HasColumnType("nvarchar(max)").IsRequired();
+            entity.HasIndex(news => news.PublishedAt);
+
+            entity.HasData(NewsSeedData.Items);
         });
 
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())

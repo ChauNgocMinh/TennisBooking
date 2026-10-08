@@ -1,0 +1,24 @@
+@model AdminDashboardViewModel
+
+@{ ViewData["Title"] = "Dashboard"; }
+
+<div class="admin-page">
+    <div class="admin-page-header">
+        <h1 data-i18n="admin.dashboardTitle">Dashboard</h1>
+    </div>
+
+    <div class="admin-stats">
+        <div class="admin-stat">
+            <span data-i18n="admin.courts">Courts</span>
+            <strong>@Model.CourtCount</strong>
+        </div>
+        <div class="admin-stat">
+            <span data-i18n="admin.coaches">Trainers</span>
+            <strong>@Model.CoachCount</strong>
+        </div>
+        <div class="admin-stat">
+            <span data-i18n="admin.news">News</span>
+            <strong>@Model.NewsCount</strong>
+        </div>
+    </div>
+</div>
