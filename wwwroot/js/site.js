@@ -343,8 +343,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const renderBookingWeek = () => {
-        const today = new Date();
-        const days = window.bookingWeek.buildBookingWeek(today);
+        const selectedDateValue = document.querySelector("#schedule-date")?.value;
+        const selectedDate = selectedDateValue
+            ? new Date(`${selectedDateValue}T12:00:00`)
+            : new Date();
+        const days = window.bookingWeek.buildBookingWeek(selectedDate);
         const formatter = new Intl.DateTimeFormat(currentLanguage === "vi" ? "vi-VN" : "en-US", {
             weekday: "long",
             day: "2-digit",

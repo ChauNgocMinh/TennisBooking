@@ -8,7 +8,7 @@ namespace TennisBooking.Areas.Admin.Controllers;
 [Area("Admin"), Authorize]
 public sealed class CourtsController(IAdminManagementService service) : Controller
 {
-    public async Task<IActionResult> Index(CancellationToken cancellationToken) => View(await service.GetCourtsAsync(cancellationToken));
+    public async Task<IActionResult> Index(int page = 1, CancellationToken cancellationToken = default) => View(await service.GetCourtsAsync(page, 10, cancellationToken));
     public IActionResult Create() => View(new AdminCourtViewModel());
     public async Task<IActionResult> Edit(Guid id, CancellationToken cancellationToken) => await Form(id, cancellationToken);
 
@@ -23,7 +23,7 @@ public sealed class CourtsController(IAdminManagementService service) : Controll
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
-        if (!await service.DeleteCourtAsync(id, cancellationToken)) TempData["AdminError"] = "admin.deleteConflict";
+        if (!await service.DeleteCourtAsync(id, cancellationToken)) TempData["AdminError"] = "Không thể xóa dữ liệu sân đang được sử dụng.";
         return RedirectToAction(nameof(Index));
     }
 

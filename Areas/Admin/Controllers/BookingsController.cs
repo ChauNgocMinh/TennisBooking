@@ -9,9 +9,11 @@ namespace TennisBooking.Areas.Admin.Controllers;
 [Area("Admin"), Authorize]
 public sealed class BookingsController(ApplicationDbContext context) : Controller
 {
-    public async Task<IActionResult> Index(CancellationToken cancellationToken)
+    public async Task<IActionResult> Index(int page = 1, CancellationToken cancellationToken = default)
     {
-        var items = await context.Bookings
+        const int pageSize = 10;
+        page = Math.Max(1, page);
+        var query = context.Bookings
             .AsNoTracking()
             .Include(b => b.Court)
             .OrderByDescending(b => b.StartTime)
@@ -24,10 +26,17 @@ public sealed class BookingsController(ApplicationDbContext context) : Controlle
                 StartTime = b.StartTime,
                 EndTime = b.EndTime,
                 Status = b.Status
-            })
-            .ToListAsync(cancellationToken);
+            });
+        var totalItems = await query.CountAsync(cancellationToken);
+        var totalPages = Math.Max(1, (int)Math.Ceiling(totalItems / (double)pageSize));
+        page = Math.Min(page, totalPages);
+        var items = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
 
-        return View(items);
+        return View(new AdminPagedViewModel<AdminBookingViewModel>
+        {
+            Items = items,
+            Pagination = new AdminPaginationViewModel { Page = page, TotalPages = totalPages }
+        });
     }
 
     [HttpPost, ValidateAntiForgeryToken]
@@ -72,7 +81,7 @@ public sealed class BookingsController(ApplicationDbContext context) : Controlle
         }
         catch (DbUpdateException)
         {
-            TempData["AdminError"] = "admin.deleteConflict";
+            TempData["AdminError"] = "Không thể xóa dữ liệu đặt lịch đang được sử dụng.";
         }
         return RedirectToAction(nameof(Index));
     }

@@ -1,47 +1,53 @@
-@model IReadOnlyCollection<TennisBooking.ViewModels.AdminBookingViewModel>
+@model AdminPagedViewModel<TennisBooking.ViewModels.AdminBookingViewModel>
 
-@{ ViewData["Title"] = "Bookings"; }
+@{ ViewData["Title"] = "Đặt lịch"; }
 
 <div class="admin-page">
     <div class="admin-page-header">
-        <h1 data-i18n="admin.bookings">Bookings</h1>
+        <h1>Đặt lịch</h1>
     </div>
 
     <div class="admin-surface">
         <table class="table admin-table">
             <thead>
                 <tr>
-                    <th data-i18n="admin.court">Court</th>
-                    <th data-i18n="admin.customer">Customer</th>
-                    <th data-i18n="admin.phone">Phone</th>
-                    <th data-i18n="admin.start">Start</th>
-                    <th data-i18n="admin.end">End</th>
-                    <th data-i18n="admin.status">Status</th>
+                    <th>Sân</th>
+                    <th>Khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Items)
                 {
                     <tr>
                         <td>@item.CourtName</td>
                         <td>@item.CustomerName</td>
                         <td>@item.PhoneNumber</td>
-                        <td>@item.StartTime.ToString("g")</td>
-                        <td>@item.EndTime.ToString("g")</td>
-                        <td data-i18n="admin.status.@item.Status">@item.Status</td>
+                        <td>@item.StartTime.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@item.EndTime.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@(item.Status switch
+                            {
+                                TennisBooking.Common.Enum.BookingStatus.Pending => "Chờ xác nhận",
+                                TennisBooking.Common.Enum.BookingStatus.Confirmed => "Đã xác nhận",
+                                TennisBooking.Common.Enum.BookingStatus.Cancelled => "Đã hủy",
+                                _ => item.Status.ToString()
+                            })</td>
                         <td class="admin-actions">
                             @if (item.Status == TennisBooking.Common.Enum.BookingStatus.Pending)
                             {
                                 <form asp-action="Confirm" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" data-i18n="admin.confirm">Confirm</button>
+                                    <button class="admin-action-confirm" type="submit">Xác nhận</button>
                                 </form>
                                 <form asp-action="Cancel" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" data-i18n="admin.cancel">Cancel</button>
+                                    <button class="admin-action-cancel" type="submit">Hủy</button>
                                 </form>
                             }
                             else if (item.Status == TennisBooking.Common.Enum.BookingStatus.Confirmed)
@@ -49,12 +55,12 @@
                                 <form asp-action="Cancel" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" data-i18n="admin.cancel">Cancel</button>
+                                    <button class="admin-action-cancel" type="submit">Hủy</button>
                                 </form>
                                 <form asp-action="SetPending" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" data-i18n="admin.setPending">Set Pending</button>
+                                    <button class="admin-action-pending" type="submit">Chuyển về chờ xác nhận</button>
                                 </form>
                             }
                             else if (item.Status == TennisBooking.Common.Enum.BookingStatus.Cancelled)
@@ -62,14 +68,14 @@
                                 <form asp-action="SetPending" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@item.Id" />
-                                    <button type="submit" data-i18n="admin.setPending">Set Pending</button>
+                                    <button class="admin-action-pending" type="submit">Chuyển về chờ xác nhận</button>
                                 </form>
                             }
 
                             <form asp-action="Delete" method="post" class="d-inline">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="id" value="@item.Id" />
-                                <button type="submit" data-i18n="admin.delete">Delete</button>
+                                <button class="admin-action-delete" type="submit">Xóa</button>
                             </form>
                         </td>
                     </tr>
@@ -77,4 +83,5 @@
             </tbody>
         </table>
     </div>
+    <partial name="_Pagination" model="Model.Pagination" />
 </div>

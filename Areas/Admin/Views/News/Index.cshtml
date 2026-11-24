@@ -1,25 +1,25 @@
-@model IReadOnlyCollection<AdminNewsViewModel>
+@model AdminPagedViewModel<AdminNewsViewModel>
 
 @{
-    ViewData["Title"] = "News";
+    ViewData["Title"] = "Tin tức";
 }
 <div class="admin-page-header">
-    <h1 data-i18n="admin.news">News</h1>
-    <a class="admin-primary" asp-action="Create" data-i18n="admin.add">Add new</a>
+    <h1>Tin tức</h1>
+    <a class="admin-primary" asp-action="Create">Thêm bài viết</a>
 </div>
 <div class="admin-table-wrap">
     <table class="table admin-table">
         <thead>
                 <tr>
                 <th></th>
-                <th data-i18n="admin.titleVi">Vietnamese title</th>
-                <th data-i18n="admin.titleEn">English title</th>
-                <th data-i18n="admin.publishedAt">Published</th>
+                <th>Tiêu đề tiếng Việt</th>
+                <th>Tiêu đề tiếng Anh</th>
+                <th>Ngày đăng</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Items)
             {
                 <tr>
                     <td>
@@ -29,11 +29,11 @@
                     <td>@item.TitleEn</td>
                     <td>@item.PublishedAt.ToString("dd/MM/yyyy")</td>
                     <td class="admin-actions">
-                        <a asp-action="Edit" asp-route-id="@item.Id" data-i18n="admin.edit">Edit</a>
+                        <a class="admin-action-edit" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
                         <form asp-action="Delete" method="post" class="d-inline">
                             @Html.AntiForgeryToken()
                             <input type="hidden" name="id" value="@item.Id" />
-                            <button type="submit" data-i18n="admin.delete">Delete</button>
+                            <button class="admin-action-delete" type="submit">Xóa</button>
                         </form>
                     </td>
                 </tr>
@@ -41,3 +41,4 @@
         </tbody>
     </table>
 </div>
+<partial name="_Pagination" model="Model.Pagination" />

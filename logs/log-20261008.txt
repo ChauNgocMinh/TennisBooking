@@ -1,0 +1,765 @@
+2026-10-08 23:17:20.146 +07:00 [INF] ========== APPLICATION STARTING ==========
+2026-10-08 23:17:21.116 +07:00 [INF] Starting database migration...
+2026-10-08 23:17:21.262 +07:00 [INF] Database connection: attempting connection...
+2026-10-08 23:17:24.255 +07:00 [INF] Executed DbCommand (764ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:17:24.278 +07:00 [INF] Database CanConnect result: true
+2026-10-08 23:17:24.281 +07:00 [INF] Running EF Core migrations...
+2026-10-08 23:17:25.034 +07:00 [INF] Executed DbCommand (724ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:17:25.043 +07:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-10-08 23:17:25.299 +07:00 [INF] Executed DbCommand (251ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-10-08 23:17:25.920 +07:00 [INF] Executed DbCommand (271ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-10-08 23:17:27.063 +07:00 [INF] Executed DbCommand (602ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:17:27.301 +07:00 [INF] Executed DbCommand (231ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-10-08 23:17:27.574 +07:00 [INF] Executed DbCommand (264ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-10-08 23:17:27.598 +07:00 [INF] No migrations were applied. The database is already up to date.
+2026-10-08 23:17:28.084 +07:00 [INF] Executed DbCommand (231ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2026-10-08 23:17:28.088 +07:00 [INF] Database migration completed.
+2026-10-08 23:17:28.090 +07:00 [INF] Starting AdminSeedData...
+2026-10-08 23:17:28.122 +07:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-08 23:17:28.763 +07:00 [INF] Executed DbCommand (281ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-08 23:17:28.850 +07:00 [INF] AdminSeedData completed.
+2026-10-08 23:17:29.115 +07:00 [INF] Application started successfully.
+2026-10-08 23:17:29.432 +07:00 [INF] Now listening on: https://localhost:7176
+2026-10-08 23:17:29.434 +07:00 [INF] Now listening on: http://localhost:5214
+2026-10-08 23:17:29.474 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-08 23:17:29.476 +07:00 [INF] Hosting environment: Development
+2026-10-08 23:17:29.478 +07:00 [INF] Content root path: C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking
+2026-10-08 23:17:30.405 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/ - null null
+2026-10-08 23:17:30.685 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:17:30.714 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller TennisBooking.Controllers.HomeController (TennisBooking).
+2026-10-08 23:17:31.034 +07:00 [INF] Executed DbCommand (252ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BannerImageUrl], [n].[ContentEn], [n].[ContentVi], [n].[CreateFrom], [n].[CreatedAt], [n].[PublishedAt], [n].[ShortContentEn], [n].[ShortContentVi], [n].[TitleEn], [n].[TitleVi], [n].[UpdateFrom], [n].[UpdatedAt]
+FROM [News] AS [n]
+ORDER BY [n].[PublishedAt] DESC, [n].[TitleVi]
+2026-10-08 23:17:31.313 +07:00 [INF] Executing ViewResult, running view Index.
+2026-10-08 23:17:31.484 +07:00 [INF] Executed ViewResult - view Index executed in 171.3566ms.
+2026-10-08 23:17:31.495 +07:00 [INF] Executed action TennisBooking.Controllers.HomeController.Index (TennisBooking) in 774.983ms
+2026-10-08 23:17:31.502 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:17:31.512 +07:00 [INF] HTTP GET / responded 200 in 941.7285 ms
+2026-10-08 23:17:31.548 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/ - 200 null text/html; charset=utf-8 1151.2214ms
+2026-10-08 23:21:31.445 +07:00 [INF] ========== APPLICATION STARTING ==========
+2026-10-08 23:21:32.164 +07:00 [INF] Starting database migration...
+2026-10-08 23:21:32.283 +07:00 [INF] Database connection: attempting connection...
+2026-10-08 23:21:38.222 +07:00 [INF] Executed DbCommand (536ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:21:38.240 +07:00 [INF] Database CanConnect result: true
+2026-10-08 23:21:38.242 +07:00 [INF] Running EF Core migrations...
+2026-10-08 23:21:38.560 +07:00 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:21:38.568 +07:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-10-08 23:21:38.860 +07:00 [INF] Executed DbCommand (288ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-10-08 23:21:40.036 +07:00 [INF] Executed DbCommand (762ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-10-08 23:21:40.855 +07:00 [INF] Executed DbCommand (266ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:21:41.118 +07:00 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-10-08 23:21:41.370 +07:00 [INF] Executed DbCommand (245ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-10-08 23:21:41.390 +07:00 [INF] No migrations were applied. The database is already up to date.
+2026-10-08 23:21:41.915 +07:00 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2026-10-08 23:21:41.921 +07:00 [INF] Database migration completed.
+2026-10-08 23:21:41.922 +07:00 [INF] Starting AdminSeedData...
+2026-10-08 23:21:41.947 +07:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-08 23:21:42.540 +07:00 [INF] Executed DbCommand (252ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2026-10-08 23:21:42.618 +07:00 [INF] AdminSeedData completed.
+2026-10-08 23:21:42.828 +07:00 [INF] Application started successfully.
+2026-10-08 23:21:43.243 +07:00 [INF] Now listening on: https://localhost:7176
+2026-10-08 23:21:43.244 +07:00 [INF] Now listening on: http://localhost:5214
+2026-10-08 23:21:43.283 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-10-08 23:21:43.285 +07:00 [INF] Hosting environment: Development
+2026-10-08 23:21:43.286 +07:00 [INF] Content root path: C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking
+2026-10-08 23:21:44.007 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/ - null null
+2026-10-08 23:21:44.217 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:21:44.247 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller TennisBooking.Controllers.HomeController (TennisBooking).
+2026-10-08 23:21:44.563 +07:00 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BannerImageUrl], [n].[ContentEn], [n].[ContentVi], [n].[CreateFrom], [n].[CreatedAt], [n].[PublishedAt], [n].[ShortContentEn], [n].[ShortContentVi], [n].[TitleEn], [n].[TitleVi], [n].[UpdateFrom], [n].[UpdatedAt]
+FROM [News] AS [n]
+ORDER BY [n].[PublishedAt] DESC, [n].[TitleVi]
+2026-10-08 23:21:44.824 +07:00 [INF] Executing ViewResult, running view Index.
+2026-10-08 23:21:44.973 +07:00 [INF] Executed ViewResult - view Index executed in 151.2753ms.
+2026-10-08 23:21:44.985 +07:00 [INF] Executed action TennisBooking.Controllers.HomeController.Index (TennisBooking) in 733.0438ms
+2026-10-08 23:21:44.987 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-10-08 23:21:44.987 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - null null
+2026-10-08 23:21:44.987 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - null null
+2026-10-08 23:21:44.988 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/Logo.png - null null
+2026-10-08 23:21:44.989 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:21:45.090 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:21:45.096 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:21:45.103 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:21:45.137 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:21:45.138 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.138 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.140 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.140 +07:00 [INF] HTTP GET /TennisBooking.styles.css responded 404 in 36.2199 ms
+2026-10-08 23:21:45.142 +07:00 [INF] HTTP GET / responded 200 in 1033.2960 ms
+2026-10-08 23:21:45.145 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:21:45.145 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:21:45.145 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - null null
+2026-10-08 23:21:45.161 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - 404 0 null 173.4431ms
+2026-10-08 23:21:45.161 +07:00 [INF] The file media/Logo.png was not modified
+2026-10-08 23:21:45.148 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.148 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.151 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.154 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.171 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.173 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:21:45.175 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/ - 200 null text/html; charset=utf-8 1183.8059ms
+2026-10-08 23:21:45.175 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.179 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/TennisBooking.styles.css, Response status code: 404
+2026-10-08 23:21:45.180 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.196 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:21:45.183 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 38.4533ms
+2026-10-08 23:21:45.194 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\y5sz15vbbr-{0}-46ein0sx1k-46ein0sx1k.gz'
+2026-10-08 23:21:45.194 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:21:45.191 +07:00 [INF] Sending file. Request path: 'css/site.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\j4r9vebys7-{0}-1662sgwhxf-1662sgwhxf.gz'
+2026-10-08 23:21:45.191 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:21:45.191 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:21:45.207 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:21:45.208 +07:00 [INF] HTTP GET /media/Logo.png responded 304 in 68.5485 ms
+2026-10-08 23:21:45.210 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.212 +07:00 [INF] Sending ["bytes 0-16215516/16215517"] of file C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\wwwroot\media\Videos\Banner.mp4
+2026-10-08 23:21:45.216 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.217 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.219 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.220 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.222 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.223 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.225 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/Logo.png - 304 null image/png 237.197ms
+2026-10-08 23:21:45.226 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 78.4267 ms
+2026-10-08 23:21:45.231 +07:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 200 in 238.2738 ms
+2026-10-08 23:21:45.233 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 88.0071 ms
+2026-10-08 23:21:45.234 +07:00 [INF] HTTP GET /css/site.css responded 200 in 237.4601 ms
+2026-10-08 23:21:45.235 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.41ms
+2026-10-08 23:21:45.237 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 86.2595 ms
+2026-10-08 23:21:45.238 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 84.5265 ms
+2026-10-08 23:21:45.239 +07:00 [INF] HTTP GET /js/site.js responded 200 in 68.7317 ms
+2026-10-08 23:21:45.245 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 149.1953ms
+2026-10-08 23:21:45.248 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - 200 232871 text/css 260.9292ms
+2026-10-08 23:21:45.251 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 160.8689ms
+2026-10-08 23:21:45.254 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - 200 16882 text/css 266.7219ms
+2026-10-08 23:21:45.260 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 157.5832ms
+2026-10-08 23:21:45.262 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 125.5254ms
+2026-10-08 23:21:45.265 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 120.5008ms
+2026-10-08 23:21:45.311 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/team-coach.jpg - null null
+2026-10-08 23:21:45.319 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/banner-hero.png - null null
+2026-10-08 23:21:45.324 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.324 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.326 +07:00 [INF] The file media/team-coach.jpg was not modified
+2026-10-08 23:21:45.329 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.331 +07:00 [INF] HTTP GET /media/team-coach.jpg responded 304 in 15.2097 ms
+2026-10-08 23:21:45.336 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/team-coach.jpg - 304 null image/jpeg 25.0699ms
+2026-10-08 23:21:45.362 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Booking/Availability?weekStart=2026-10-05&classType=private - null null
+2026-10-08 23:21:45.366 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.BookingController.Availability (TennisBooking)'
+2026-10-08 23:21:45.375 +07:00 [INF] Route matched with {action = "Availability", controller = "Booking", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Availability(System.Nullable`1[System.DateTime], System.String, System.Threading.CancellationToken) on controller TennisBooking.Controllers.BookingController (TennisBooking).
+2026-10-08 23:21:45.437 +07:00 [INF] Sending file. Request path: 'media/banner-hero.png'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\wwwroot\media\banner-hero.png'
+2026-10-08 23:21:45.439 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.441 +07:00 [INF] HTTP GET /media/banner-hero.png responded 200 in 117.1398 ms
+2026-10-08 23:21:45.444 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/banner-hero.png - 200 1320337 image/png 124.9755ms
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:21:45.586 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 10.1963ms
+2026-10-08 23:21:45.589 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.589 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.588 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.576 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:21:45.631 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:21:45.631 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:21:45.632 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:21:45.637 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.2108ms
+2026-10-08 23:21:45.638 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.640 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.641 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.643 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.649 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:21:45.650 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 70.3523 ms
+2026-10-08 23:21:45.651 +07:00 [INF] HTTP GET /js/site.js responded 200 in 62.0547 ms
+2026-10-08 23:21:45.652 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 69.7506 ms
+2026-10-08 23:21:45.653 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.654 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.656 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 80.4964ms
+2026-10-08 23:21:45.658 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 82.7401ms
+2026-10-08 23:21:45.661 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 84.9083ms
+2026-10-08 23:21:45.663 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 25.3784 ms
+2026-10-08 23:21:45.664 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:21:45.677 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 100.7709ms
+2026-10-08 23:21:45.678 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:21:45.683 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 84.5222 ms
+2026-10-08 23:21:45.686 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 110.0418ms
+2026-10-08 23:21:45.724 +07:00 [INF] Executed DbCommand (237ms) [Parameters=[@__normalizedClassType_0='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[CourtType], [t].[CreateFrom], [t].[CreatedAt], [t].[Description], [t].[Name], [t].[Price], [t].[UpdateFrom], [t].[UpdatedAt]
+FROM [TennisCourts] AS [t]
+WHERE [t].[CourtType] = @__normalizedClassType_0
+ORDER BY [t].[Id]
+2026-10-08 23:21:46.141 +07:00 [INF] Executed DbCommand (243ms) [Parameters=[@__court_Id_0='?' (DbType = Guid), @__normalizedWeekStart_1='?' (DbType = DateTime2), @__weekEnd_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[SlotStart]
+FROM [CourtSlots] AS [c]
+LEFT JOIN [Bookings] AS [b] ON [c].[BookingId] = [b].[Id]
+WHERE [c].[CourtId] = @__court_Id_0 AND [c].[SlotStart] >= @__normalizedWeekStart_1 AND [c].[SlotStart] < @__weekEnd_2 AND [c].[BookingId] IS NOT NULL AND [b].[Id] IS NOT NULL AND [b].[Status] = 2
+ORDER BY [c].[SlotStart]
+2026-10-08 23:21:46.153 +07:00 [INF] Executing OkObjectResult, writing value of type 'TennisBooking.ViewModels.BookingAvailabilityViewModel'.
+2026-10-08 23:21:46.173 +07:00 [INF] Executed action TennisBooking.Controllers.BookingController.Availability (TennisBooking) in 794.653ms
+2026-10-08 23:21:46.175 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.BookingController.Availability (TennisBooking)'
+2026-10-08 23:21:46.177 +07:00 [INF] HTTP GET /Booking/Availability responded 200 in 811.1209 ms
+2026-10-08 23:21:46.190 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Booking/Availability?weekStart=2026-10-05&classType=private - 200 null application/json; charset=utf-8 828.0237ms
+2026-10-08 23:21:46.624 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - null null
+2026-10-08 23:21:46.630 +07:00 [INF] HTTP GET /media/news/evening-training.jpg responded 404 in 0.7731 ms
+2026-10-08 23:21:46.634 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - 404 0 null 9.8414ms
+2026-10-08 23:21:46.641 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/media/news/evening-training.jpg, Response status code: 404
+2026-10-08 23:22:01.748 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:01.750 +07:00 [INF] HTTP GET /Media/Videos/Banner.mp4 responded 206 in 16574.6495 ms
+2026-10-08 23:22:01.751 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - 206 16215517 video/mp4 16606.0192ms
+2026-10-08 23:22:31.375 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/ - null null
+2026-10-08 23:22:31.385 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:22:31.392 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller TennisBooking.Controllers.HomeController (TennisBooking).
+2026-10-08 23:22:32.109 +07:00 [INF] Executed DbCommand (707ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BannerImageUrl], [n].[ContentEn], [n].[ContentVi], [n].[CreateFrom], [n].[CreatedAt], [n].[PublishedAt], [n].[ShortContentEn], [n].[ShortContentVi], [n].[TitleEn], [n].[TitleVi], [n].[UpdateFrom], [n].[UpdatedAt]
+FROM [News] AS [n]
+ORDER BY [n].[PublishedAt] DESC, [n].[TitleVi]
+2026-10-08 23:22:32.118 +07:00 [INF] Executing ViewResult, running view Index.
+2026-10-08 23:22:32.153 +07:00 [INF] Executed ViewResult - view Index executed in 36.9332ms.
+2026-10-08 23:22:32.155 +07:00 [INF] Executed action TennisBooking.Controllers.HomeController.Index (TennisBooking) in 761.1587ms
+2026-10-08 23:22:32.157 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:22:32.159 +07:00 [INF] HTTP GET / responded 200 in 774.8032 ms
+2026-10-08 23:22:32.164 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/ - 200 null text/html; charset=utf-8 789.2186ms
+2026-10-08 23:22:32.207 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-10-08 23:22:32.211 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - null null
+2026-10-08 23:22:32.213 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/Logo.png - null null
+2026-10-08 23:22:32.322 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.240 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.272 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:22:32.213 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - null null
+2026-10-08 23:22:32.301 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:22:32.302 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:22:32.308 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:22:32.315 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:22:32.322 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:22:32.337 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - null null
+2026-10-08 23:22:32.334 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.339 +07:00 [INF] Sending file. Request path: 'css/site.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\j4r9vebys7-{0}-1662sgwhxf-1662sgwhxf.gz'
+2026-10-08 23:22:32.341 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.343 +07:00 [INF] HTTP GET /TennisBooking.styles.css responded 404 in 0.2760 ms
+2026-10-08 23:22:32.347 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.349 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.352 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.458 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.327 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:22:32.333 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/team-coach.jpg - null null
+2026-10-08 23:22:32.493 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.492 +07:00 [INF] The file media/Logo.png was not modified
+2026-10-08 23:22:32.517 +07:00 [INF] The file media/Videos/Banner.mp4 was not modified
+2026-10-08 23:22:32.494 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.498 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - 404 0 null 284.8836ms
+2026-10-08 23:22:32.506 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:22:32.502 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:22:32.504 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:22:32.488 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:22:32.512 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.365 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\y5sz15vbbr-{0}-46ein0sx1k-46ein0sx1k.gz'
+2026-10-08 23:22:32.426 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 111.2278ms
+2026-10-08 23:22:32.497 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:22:32.503 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:22:32.522 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.522 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 195.1909ms
+2026-10-08 23:22:32.523 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.524 +07:00 [INF] HTTP GET /css/site.css responded 200 in 210.1751 ms
+2026-10-08 23:22:32.525 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:22:32.528 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/TennisBooking.styles.css, Response status code: 404
+2026-10-08 23:22:32.552 +07:00 [INF] HTTP GET /Media/Videos/Banner.mp4 responded 304 in 61.1383 ms
+2026-10-08 23:22:32.547 +07:00 [INF] HTTP GET /media/Logo.png responded 304 in 213.4336 ms
+2026-10-08 23:22:32.554 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - 200 16882 text/css 343.4709ms
+2026-10-08 23:22:32.531 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.532 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.534 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.538 +07:00 [INF] The file media/team-coach.jpg was not modified
+2026-10-08 23:22:32.539 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.537 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 77.2412ms
+2026-10-08 23:22:32.544 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.546 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.567 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - 304 null video/mp4 229.3019ms
+2026-10-08 23:22:32.567 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 42.338ms
+2026-10-08 23:22:32.570 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/Logo.png - 304 null image/png 357.7845ms
+2026-10-08 23:22:32.576 +07:00 [INF] HTTP GET /js/site.js responded 200 in 145.8731 ms
+2026-10-08 23:22:32.577 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 228.9524 ms
+2026-10-08 23:22:32.579 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 227.4900 ms
+2026-10-08 23:22:32.581 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.583 +07:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 200 in 371.0126 ms
+2026-10-08 23:22:32.590 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 250.6625 ms
+2026-10-08 23:22:32.593 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 247.7345 ms
+2026-10-08 23:22:32.614 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 292.2345ms
+2026-10-08 23:22:32.617 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 315.0042ms
+2026-10-08 23:22:32.619 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 310.9658ms
+2026-10-08 23:22:32.621 +07:00 [INF] HTTP GET /media/team-coach.jpg responded 304 in 109.4704 ms
+2026-10-08 23:22:32.623 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - 200 232871 text/css 416.0226ms
+2026-10-08 23:22:32.626 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 354.3594ms
+2026-10-08 23:22:32.629 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 327.7449ms
+2026-10-08 23:22:32.640 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - null null
+2026-10-08 23:22:32.645 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/team-coach.jpg - 304 null image/jpeg 312.0729ms
+2026-10-08 23:22:32.651 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/banner-hero.png - null null
+2026-10-08 23:22:32.666 +07:00 [INF] HTTP GET /media/news/evening-training.jpg responded 404 in 0.5585 ms
+2026-10-08 23:22:32.674 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.686 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - 404 0 null 45.9016ms
+2026-10-08 23:22:32.690 +07:00 [INF] The file media/banner-hero.png was not modified
+2026-10-08 23:22:32.698 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/media/news/evening-training.jpg, Response status code: 404
+2026-10-08 23:22:32.702 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.707 +07:00 [INF] HTTP GET /media/banner-hero.png responded 304 in 33.7234 ms
+2026-10-08 23:22:32.712 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/banner-hero.png - 304 null image/png 61.7683ms
+2026-10-08 23:22:32.730 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/favicon.ico - null null
+2026-10-08 23:22:32.737 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.758 +07:00 [INF] Sending file. Request path: 'favicon.ico'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\1aeij3o96e-{0}-61n19gt1b8-61n19gt1b8.gz'
+2026-10-08 23:22:32.761 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.763 +07:00 [INF] HTTP GET /favicon.ico responded 200 in 26.5908 ms
+2026-10-08 23:22:32.768 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/favicon.ico - 200 5463 image/x-icon 37.7269ms
+2026-10-08 23:22:32.903 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:22:32.904 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:22:32.904 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:22:32.904 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:22:32.904 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:22:32.914 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.914 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.917 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.929 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:22:32.933 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:22:32.933 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:22:32.934 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.935 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.936 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.938 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.946 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:22:32.944 +07:00 [INF] HTTP GET /js/site.js responded 200 in 37.1537 ms
+2026-10-08 23:22:32.941 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 29.2550 ms
+2026-10-08 23:22:32.946 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 29.5207 ms
+2026-10-08 23:22:32.948 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.951 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 48.6947ms
+2026-10-08 23:22:32.954 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 50.5784ms
+2026-10-08 23:22:32.957 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 53.04ms
+2026-10-08 23:22:32.958 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 37.6139 ms
+2026-10-08 23:22:32.977 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.977 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 72.8729ms
+2026-10-08 23:22:32.982 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:22:32.986 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:32.988 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 62.9342 ms
+2026-10-08 23:22:32.991 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 86.782ms
+2026-10-08 23:22:45.343 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/ - null null
+2026-10-08 23:22:45.349 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:22:45.351 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller TennisBooking.Controllers.HomeController (TennisBooking).
+2026-10-08 23:22:45.623 +07:00 [INF] Executed DbCommand (265ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BannerImageUrl], [n].[ContentEn], [n].[ContentVi], [n].[CreateFrom], [n].[CreatedAt], [n].[PublishedAt], [n].[ShortContentEn], [n].[ShortContentVi], [n].[TitleEn], [n].[TitleVi], [n].[UpdateFrom], [n].[UpdatedAt]
+FROM [News] AS [n]
+ORDER BY [n].[PublishedAt] DESC, [n].[TitleVi]
+2026-10-08 23:22:45.631 +07:00 [INF] Executing ViewResult, running view Index.
+2026-10-08 23:22:45.640 +07:00 [INF] Executed ViewResult - view Index executed in 9.5968ms.
+2026-10-08 23:22:45.643 +07:00 [INF] Executed action TennisBooking.Controllers.HomeController.Index (TennisBooking) in 288.6236ms
+2026-10-08 23:22:45.645 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:22:45.648 +07:00 [INF] HTTP GET / responded 200 in 298.9011 ms
+2026-10-08 23:22:45.653 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/ - 200 null text/html; charset=utf-8 309.3391ms
+2026-10-08 23:22:45.707 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-10-08 23:22:45.708 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - null null
+2026-10-08 23:22:45.709 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - null null
+2026-10-08 23:22:45.709 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:22:45.709 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:22:45.709 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/Logo.png - null null
+2026-10-08 23:22:45.709 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:22:45.710 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:22:45.710 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:22:45.710 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:22:45.711 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:22:45.712 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/team-coach.jpg - null null
+2026-10-08 23:22:45.737 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.740 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.730 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.733 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 23.1199ms
+2026-10-08 23:22:45.724 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.712 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.717 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.744 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - null null
+2026-10-08 23:22:45.727 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.719 +07:00 [INF] HTTP GET /TennisBooking.styles.css responded 404 in 0.2147 ms
+2026-10-08 23:22:45.721 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.747 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.749 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:22:45.752 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:22:45.755 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:22:45.757 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:22:45.759 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:22:45.763 +07:00 [INF] Sending file. Request path: 'css/site.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\j4r9vebys7-{0}-1662sgwhxf-1662sgwhxf.gz'
+2026-10-08 23:22:45.764 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\y5sz15vbbr-{0}-46ein0sx1k-46ein0sx1k.gz'
+2026-10-08 23:22:45.767 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.768 +07:00 [INF] The file media/Logo.png was not modified
+2026-10-08 23:22:45.771 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - 404 0 null 61.9337ms
+2026-10-08 23:22:45.774 +07:00 [INF] The file media/team-coach.jpg was not modified
+2026-10-08 23:22:45.775 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:22:45.776 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.778 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.780 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.785 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 28.0754ms
+2026-10-08 23:22:45.786 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.788 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.790 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.792 +07:00 [INF] The file media/Videos/Banner.mp4 was not modified
+2026-10-08 23:22:45.793 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.798 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/TennisBooking.styles.css, Response status code: 404
+2026-10-08 23:22:45.799 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.802 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.803 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 66.8327 ms
+2026-10-08 23:22:45.805 +07:00 [INF] HTTP GET /js/site.js responded 200 in 65.2867 ms
+2026-10-08 23:22:45.806 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 76.2831 ms
+2026-10-08 23:22:45.812 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 87.7991 ms
+2026-10-08 23:22:45.812 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 101.8493ms
+2026-10-08 23:22:45.814 +07:00 [INF] HTTP GET /css/site.css responded 200 in 98.7605 ms
+2026-10-08 23:22:45.816 +07:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 200 in 104.0438 ms
+2026-10-08 23:22:45.818 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.819 +07:00 [INF] HTTP GET /media/Logo.png responded 304 in 92.5651 ms
+2026-10-08 23:22:45.824 +07:00 [INF] HTTP GET /media/team-coach.jpg responded 304 in 77.3069 ms
+2026-10-08 23:22:45.825 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 104.2941 ms
+2026-10-08 23:22:45.828 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 117.5247ms
+2026-10-08 23:22:45.830 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 119.9795ms
+2026-10-08 23:22:45.833 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 123.834ms
+2026-10-08 23:22:45.837 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 127.7996ms
+2026-10-08 23:22:45.839 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:22:45.842 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:22:45.860 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:22:45.865 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:22:45.854 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/team-coach.jpg - 304 null image/jpeg 141.8535ms
+2026-10-08 23:22:45.871 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:22:45.880 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:22:45.845 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - 200 16882 text/css 137.2354ms
+2026-10-08 23:22:45.847 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - 200 232871 text/css 139.8231ms
+2026-10-08 23:22:45.848 +07:00 [INF] HTTP GET /Media/Videos/Banner.mp4 responded 304 in 82.1246 ms
+2026-10-08 23:22:45.851 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/Logo.png - 304 null image/png 141.7548ms
+2026-10-08 23:22:45.856 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 146.8245ms
+2026-10-08 23:22:45.884 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.888 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.8429ms
+2026-10-08 23:22:45.889 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.894 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.898 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - null null
+2026-10-08 23:22:45.904 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.910 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.917 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/banner-hero.png - null null
+2026-10-08 23:22:45.924 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - 304 null video/mp4 180.7039ms
+2026-10-08 23:22:45.942 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:22:45.948 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:22:45.953 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:22:45.954 +07:00 [INF] HTTP GET /media/news/evening-training.jpg responded 404 in 0.3549 ms
+2026-10-08 23:22:45.957 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:22:45.960 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:22:45.962 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.968 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.970 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.971 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.974 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - null null
+2026-10-08 23:22:45.974 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - 404 0 null 75.8932ms
+2026-10-08 23:22:45.976 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.978 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.979 +07:00 [INF] The file media/banner-hero.png was not modified
+2026-10-08 23:22:45.981 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 97.2253 ms
+2026-10-08 23:22:45.982 +07:00 [INF] HTTP GET /js/site.js responded 200 in 93.5034 ms
+2026-10-08 23:22:45.984 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 90.8072 ms
+2026-10-08 23:22:45.988 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:45.993 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/media/news/evening-training.jpg, Response status code: 404
+2026-10-08 23:22:45.995 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 92.0144 ms
+2026-10-08 23:22:45.996 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 87.3337 ms
+2026-10-08 23:22:45.998 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:46.001 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 158.4005ms
+2026-10-08 23:22:46.003 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 142.8762ms
+2026-10-08 23:22:46.006 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 140.7349ms
+2026-10-08 23:22:46.011 +07:00 [INF] Sending ["bytes 11272192-16215516/16215517"] of file C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\wwwroot\media\Videos\Banner.mp4
+2026-10-08 23:22:46.017 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 145.9926ms
+2026-10-08 23:22:46.020 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 140.2233ms
+2026-10-08 23:22:46.022 +07:00 [INF] HTTP GET /media/banner-hero.png responded 304 in 60.2754 ms
+2026-10-08 23:22:46.052 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/banner-hero.png - 304 null image/png 134.5907ms
+2026-10-08 23:22:46.096 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/favicon.ico - null null
+2026-10-08 23:22:46.102 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:46.106 +07:00 [INF] Sending file. Request path: 'favicon.ico'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\1aeij3o96e-{0}-61n19gt1b8-61n19gt1b8.gz'
+2026-10-08 23:22:46.108 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:46.111 +07:00 [INF] HTTP GET /favicon.ico responded 200 in 9.8864 ms
+2026-10-08 23:22:46.117 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/favicon.ico - 200 5463 image/x-icon 20.8484ms
+2026-10-08 23:22:46.451 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:22:46.453 +07:00 [INF] HTTP GET /Media/Videos/Banner.mp4 responded 206 in 464.6712 ms
+2026-10-08 23:22:46.455 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - 206 16215517 video/mp4 481.8977ms
+2026-10-08 23:23:40.504 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/ - null null
+2026-10-08 23:23:40.509 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:23:40.513 +07:00 [INF] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller TennisBooking.Controllers.HomeController (TennisBooking).
+2026-10-08 23:23:40.767 +07:00 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [n].[Id], [n].[BannerImageUrl], [n].[ContentEn], [n].[ContentVi], [n].[CreateFrom], [n].[CreatedAt], [n].[PublishedAt], [n].[ShortContentEn], [n].[ShortContentVi], [n].[TitleEn], [n].[TitleVi], [n].[UpdateFrom], [n].[UpdatedAt]
+FROM [News] AS [n]
+ORDER BY [n].[PublishedAt] DESC, [n].[TitleVi]
+2026-10-08 23:23:40.772 +07:00 [INF] Executing ViewResult, running view Index.
+2026-10-08 23:23:40.794 +07:00 [INF] Executed ViewResult - view Index executed in 23.2768ms.
+2026-10-08 23:23:40.796 +07:00 [INF] Executed action TennisBooking.Controllers.HomeController.Index (TennisBooking) in 280.5713ms
+2026-10-08 23:23:40.799 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.HomeController.Index (TennisBooking)'
+2026-10-08 23:23:40.801 +07:00 [INF] HTTP GET / responded 200 in 292.0793 ms
+2026-10-08 23:23:40.806 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/ - 200 null text/html; charset=utf-8 301.2167ms
+2026-10-08 23:23:40.850 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - null null
+2026-10-08 23:23:40.854 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/Logo.png - null null
+2026-10-08 23:23:40.900 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:40.927 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:40.854 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:23:40.853 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - null null
+2026-10-08 23:23:40.851 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - null null
+2026-10-08 23:23:40.860 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:23:40.899 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:23:40.911 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:23:40.912 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:23:41.045 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - null null
+2026-10-08 23:23:40.934 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Media/Videos/Banner.mp4 - null null
+2026-10-08 23:23:40.932 +07:00 [INF] The file media/Logo.png was not modified
+2026-10-08 23:23:40.938 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:40.938 +07:00 [INF] HTTP GET /TennisBooking.styles.css responded 404 in 0.1882 ms
+2026-10-08 23:23:40.942 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:40.948 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.087 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.087 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.090 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:23:41.090 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/TennisBooking.styles.css - 404 0 null 237.648ms
+2026-10-08 23:23:40.949 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.008 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\y5sz15vbbr-{0}-46ein0sx1k-46ein0sx1k.gz'
+2026-10-08 23:23:41.078 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:40.917 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:23:40.925 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:23:40.930 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/team-coach.jpg - null null
+2026-10-08 23:23:41.100 +07:00 [INF] Sending ["bytes 0-16215516/16215517"] of file C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\wwwroot\media\Videos\Banner.mp4
+2026-10-08 23:23:41.102 +07:00 [INF] HTTP GET /media/Logo.png responded 304 in 177.3515 ms
+2026-10-08 23:23:41.104 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.111 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/TennisBooking.styles.css, Response status code: 404
+2026-10-08 23:23:41.101 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:23:41.114 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:23:41.114 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.116 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:23:41.119 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.008 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 99.3907ms
+2026-10-08 23:23:41.093 +07:00 [INF] Sending file. Request path: 'css/site.css'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\j4r9vebys7-{0}-1662sgwhxf-1662sgwhxf.gz'
+2026-10-08 23:23:41.078 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_framework/aspnetcore-browser-refresh.js - 200 14931 application/javascript; charset=utf-8 32.4522ms
+2026-10-08 23:23:41.128 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.131 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 206.3165ms
+2026-10-08 23:23:41.132 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/Logo.png - 304 null image/png 278.5592ms
+2026-10-08 23:23:41.134 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 199.3619 ms
+2026-10-08 23:23:41.136 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/_vs/browserLink - null null
+2026-10-08 23:23:41.139 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.168 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - null null
+2026-10-08 23:23:41.164 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 310.0246ms
+2026-10-08 23:23:41.140 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.141 +07:00 [INF] HTTP GET /lib/bootstrap/dist/css/bootstrap.min.css responded 200 in 242.5183 ms
+2026-10-08 23:23:41.143 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.145 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:23:41.155 +07:00 [INF] The file media/team-coach.jpg was not modified
+2026-10-08 23:23:41.150 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.169 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 223.4920 ms
+2026-10-08 23:23:41.172 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.1602ms
+2026-10-08 23:23:41.178 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 229.3372 ms
+2026-10-08 23:23:41.182 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/css/bootstrap.min.css - 200 232871 text/css 331.4837ms
+2026-10-08 23:23:41.182 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 136.1615 ms
+2026-10-08 23:23:41.182 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.183 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.205 +07:00 [INF] Sending file. Request path: 'lib/jquery/dist/jquery.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\rwm0h9z5xk-{0}-o1o13a6vjx-o1o13a6vjx.gz'
+2026-10-08 23:23:41.185 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.186 +07:00 [INF] HTTP GET /css/site.css responded 200 in 244.6388 ms
+2026-10-08 23:23:41.188 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 328.0989ms
+2026-10-08 23:23:41.196 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 296.4884ms
+2026-10-08 23:23:41.202 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 290.2091ms
+2026-10-08 23:23:41.205 +07:00 [INF] HTTP GET /js/site.js responded 200 in 85.9663 ms
+2026-10-08 23:23:41.206 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.208 +07:00 [INF] HTTP GET /media/team-coach.jpg responded 304 in 79.8324 ms
+2026-10-08 23:23:41.210 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/css/site.css?v=R1jlIjSbLZv-PgePG0sDAi1TqbaBn0RbYRRS8StR_NY - 200 16882 text/css 358.5556ms
+2026-10-08 23:23:41.223 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - null null
+2026-10-08 23:23:41.228 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 310.9814ms
+2026-10-08 23:23:41.232 +07:00 [INF] HTTP GET /lib/jquery/dist/jquery.min.js responded 200 in 59.4002 ms
+2026-10-08 23:23:41.236 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/team-coach.jpg - 304 null image/jpeg 305.0821ms
+2026-10-08 23:23:41.235 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/media/banner-hero.png - null null
+2026-10-08 23:23:41.254 +07:00 [INF] HTTP GET /media/news/evening-training.jpg responded 404 in 0.4433 ms
+2026-10-08 23:23:41.254 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/Booking/Availability?weekStart=2026-10-05&classType=private - null null
+2026-10-08 23:23:41.264 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/jquery/dist/jquery.min.js - 200 87576 text/javascript 96.5914ms
+2026-10-08 23:23:41.276 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.280 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/news/evening-training.jpg - 404 0 null 57.1491ms
+2026-10-08 23:23:41.285 +07:00 [INF] Executing endpoint 'TennisBooking.Controllers.BookingController.Availability (TennisBooking)'
+2026-10-08 23:23:41.293 +07:00 [INF] The file media/banner-hero.png was not modified
+2026-10-08 23:23:41.297 +07:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7176/media/news/evening-training.jpg, Response status code: 404
+2026-10-08 23:23:41.301 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.310 +07:00 [INF] HTTP GET /media/banner-hero.png responded 304 in 34.7809 ms
+2026-10-08 23:23:41.311 +07:00 [INF] Route matched with {action = "Availability", controller = "Booking", area = "", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Availability(System.Nullable`1[System.DateTime], System.String, System.Threading.CancellationToken) on controller TennisBooking.Controllers.BookingController (TennisBooking).
+2026-10-08 23:23:41.313 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/media/banner-hero.png - 304 null image/png 77.4274ms
+2026-10-08 23:23:41.585 +07:00 [INF] Executed DbCommand (262ms) [Parameters=[@__normalizedClassType_0='?' (Size = 30)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[CourtType], [t].[CreateFrom], [t].[CreatedAt], [t].[Description], [t].[Name], [t].[Price], [t].[UpdateFrom], [t].[UpdatedAt]
+FROM [TennisCourts] AS [t]
+WHERE [t].[CourtType] = @__normalizedClassType_0
+ORDER BY [t].[Id]
+2026-10-08 23:23:41.617 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/favicon.ico - null null
+2026-10-08 23:23:41.621 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.625 +07:00 [INF] Sending file. Request path: 'favicon.ico'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\1aeij3o96e-{0}-61n19gt1b8-61n19gt1b8.gz'
+2026-10-08 23:23:41.629 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.630 +07:00 [INF] HTTP GET /favicon.ico responded 200 in 9.4669 ms
+2026-10-08 23:23:41.634 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/favicon.ico - 200 5463 image/x-icon 17.3561ms
+2026-10-08 23:23:41.848 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - null null
+2026-10-08 23:23:41.850 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - null null
+2026-10-08 23:23:41.851 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - null null
+2026-10-08 23:23:41.851 +07:00 [INF] Executed DbCommand (258ms) [Parameters=[@__court_Id_0='?' (DbType = Guid), @__normalizedWeekStart_1='?' (DbType = DateTime2), @__weekEnd_2='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[SlotStart]
+FROM [CourtSlots] AS [c]
+LEFT JOIN [Bookings] AS [b] ON [c].[BookingId] = [b].[Id]
+WHERE [c].[CourtId] = @__court_Id_0 AND [c].[SlotStart] >= @__normalizedWeekStart_1 AND [c].[SlotStart] < @__weekEnd_2 AND [c].[BookingId] IS NOT NULL AND [b].[Id] IS NOT NULL AND [b].[Status] = 2
+ORDER BY [c].[SlotStart]
+2026-10-08 23:23:41.852 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - null null
+2026-10-08 23:23:41.856 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.859 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.862 +07:00 [INF] Executing OkObjectResult, writing value of type 'TennisBooking.ViewModels.BookingAvailabilityViewModel'.
+2026-10-08 23:23:41.866 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.870 +07:00 [INF] Sending file. Request path: 'js/booking-week.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\k2xrh4659k-{0}-1q8ktvj2co-1q8ktvj2co.gz'
+2026-10-08 23:23:41.872 +07:00 [INF] Sending file. Request path: 'js/booking-validation.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\ofv106kvgm-{0}-ujv6frx3uf-ujv6frx3uf.gz'
+2026-10-08 23:23:41.878 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.878 +07:00 [INF] Sending file. Request path: 'js/site.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\5ztlm6m8lo-{0}-w0lx9o9o2t-w0lx9o9o2t.gz'
+2026-10-08 23:23:41.879 +07:00 [INF] Executed action TennisBooking.Controllers.BookingController.Availability (TennisBooking) in 562.1462ms
+2026-10-08 23:23:41.880 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.881 +07:00 [INF] HTTP GET /js/booking-week.js responded 200 in 25.3394 ms
+2026-10-08 23:23:41.883 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.885 +07:00 [INF] Executed endpoint 'TennisBooking.Controllers.BookingController.Availability (TennisBooking)'
+2026-10-08 23:23:41.886 +07:00 [INF] HTTP GET /js/booking-validation.js responded 200 in 27.3153 ms
+2026-10-08 23:23:41.889 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-week.js?v=KTJmDM6Rg68_UnQxom-L4z6qKl-C-NZXoQ17NfZW5CA - 200 1236 text/javascript 38.9401ms
+2026-10-08 23:23:41.890 +07:00 [INF] HTTP GET /js/site.js responded 200 in 24.1609 ms
+2026-10-08 23:23:41.892 +07:00 [INF] HTTP GET /Booking/Availability responded 200 in 606.7848 ms
+2026-10-08 23:23:41.894 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/booking-validation.js?v=OnBabQOP7pNpFbqIOQTZVYVIiJWw6rPXgfBcYVZPpmM - 200 2001 text/javascript 43.5581ms
+2026-10-08 23:23:41.901 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/js/site.js?v=UH4O3Z3uoR3IvBqPBL8Gj-IB45zSScVYBgHGWVUwCfI - 200 45534 text/javascript 49.66ms
+2026-10-08 23:23:41.904 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/Booking/Availability?weekStart=2026-10-05&classType=private - 200 null application/json; charset=utf-8 650.3399ms
+2026-10-08 23:23:41.916 +07:00 [INF] Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.926 +07:00 [INF] Sending file. Request path: 'lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: 'C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\obj\Debug\net9.0\compressed\hky3t8m2zd-{0}-493y06b0oq-493y06b0oq.gz'
+2026-10-08 23:23:41.928 +07:00 [INF] Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+2026-10-08 23:23:41.930 +07:00 [INF] HTTP GET /lib/bootstrap/dist/js/bootstrap.bundle.min.js responded 200 in 77.2220 ms
+2026-10-08 23:23:41.932 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7176/lib/bootstrap/dist/js/bootstrap.bundle.min.js - 200 80764 text/javascript 84.2113ms
+2026-10-08 23:23:58.408 +07:00 [INF] ========== APPLICATION STARTING ==========
+2026-10-08 23:23:59.047 +07:00 [INF] Starting database migration...
+2026-10-08 23:23:59.154 +07:00 [INF] Database connection: attempting connection...
+2026-10-08 23:24:01.806 +07:00 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:24:01.823 +07:00 [INF] Database CanConnect result: true
+2026-10-08 23:24:01.825 +07:00 [INF] Running EF Core migrations...
+2026-10-08 23:24:02.105 +07:00 [INF] Executed DbCommand (250ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-10-08 23:24:02.110 +07:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-10-08 23:24:02.389 +07:00 [INF] Executed DbCommand (275ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-10-08 23:24:22.608 +07:00 [FTL] DATABASE MIGRATION / SEED FAILED
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction2005(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginDbTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.Microsoft.EntityFrameworkCore.Migrations.IHistoryRepository.CreateIfNotExistsAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\Program.cs:line 114
+ClientConnectionId:3d778c22-d287-4846-b27b-f0c058fb0a5e
+Error Number:-2,State:0,Class:11
+2026-10-08 23:24:22.670 +07:00 [FTL] APPLICATION TERMINATED UNEXPECTEDLY
+Microsoft.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+ ---> System.ComponentModel.Win32Exception (258): The wait operation timed out.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ThrowExceptionAndWarning(Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at Microsoft.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at Microsoft.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction2005(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.BeginSqlTransaction(IsolationLevel iso, String transactionName, Boolean shouldReconnect)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso, String transactionName)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginTransaction(IsolationLevel iso)
+   at Microsoft.Data.SqlClient.SqlConnection.BeginDbTransaction(IsolationLevel isolationLevel)
+   at System.Data.Common.DbConnection.BeginDbTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.HistoryRepository.Microsoft.EntityFrameworkCore.Migrations.IHistoryRepository.CreateIfNotExistsAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in C:\Users\User\OneDrive\Desktop\TennisBooking\TennisBooking\Program.cs:line 114
+ClientConnectionId:3d778c22-d287-4846-b27b-f0c058fb0a5e
+Error Number:-2,State:0,Class:11
+2026-10-08 23:24:22.681 +07:00 [INF] ========== APPLICATION STOPPED ==========

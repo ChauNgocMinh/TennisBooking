@@ -17,7 +17,7 @@ public sealed class AccountController(SignInManager<IdentityUser> signInManager)
         if (!ModelState.IsValid) return View(model);
         var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
         if (result.Succeeded) return LocalRedirect(string.IsNullOrWhiteSpace(model.ReturnUrl) ? "/admin/dashboard" : model.ReturnUrl);
-        ModelState.AddModelError(string.Empty, "admin.login.invalid");
+        ModelState.AddModelError(string.Empty, "Email hoặc mật khẩu không đúng.");
         return View(model);
     }
 

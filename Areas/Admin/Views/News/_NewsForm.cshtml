@@ -3,7 +3,7 @@
 <div class="admin-news-form">
     <div class="admin-form-intro">
         <div>
-            <h1 data-i18n="admin.newsForm">News details</h1>
+            <h1>Thông tin bài viết</h1>
         </div>
     </div>
 
@@ -16,27 +16,27 @@
         <section class="admin-form-section">
             <div class="admin-form-section-heading">
                 <div>
-                    <h2 data-i18n="admin.storyBasics">Story basics</h2>
+                    <h2>Thông tin cơ bản</h2>
                 </div>
             </div>
             <div class="admin-form-grid">
                 <div class="admin-field admin-short-content-field">
-                    <label asp-for="TitleVi" data-i18n="admin.titleVi">Vietnamese title</label>
+                    <label asp-for="TitleVi">Tiêu đề tiếng Việt</label>
                     <input asp-for="TitleVi" />
                     <span asp-validation-for="TitleVi" class="text-danger"></span>
                 </div>
                 <div class="admin-field admin-short-content-field">
-                    <label asp-for="TitleEn" data-i18n="admin.titleEn">English title</label>
+                    <label asp-for="TitleEn">Tiêu đề tiếng Anh</label>
                     <input asp-for="TitleEn" />
                     <span asp-validation-for="TitleEn" class="text-danger"></span>
                 </div>
                 <div class="admin-field">
-                    <label asp-for="ShortContentVi" data-i18n="admin.shortContentVi">Vietnamese short content</label>
+                    <label asp-for="ShortContentVi">Mô tả ngắn tiếng Việt</label>
                     <textarea asp-for="ShortContentVi" rows="4"></textarea>
                     <span asp-validation-for="ShortContentVi" class="text-danger"></span>
                 </div>
                 <div class="admin-field">
-                    <label asp-for="ShortContentEn" data-i18n="admin.shortContentEn">English short content</label>
+                    <label asp-for="ShortContentEn">Mô tả ngắn tiếng Anh</label>
                     <textarea asp-for="ShortContentEn" rows="4"></textarea>
                     <span asp-validation-for="ShortContentEn" class="text-danger"></span>
                 </div>
@@ -46,15 +46,15 @@
         <section class="admin-form-section">
             <div class="admin-form-section-heading">
                 <div>
-                    <h2 data-i18n="admin.visual">Visual</h2>
-                    <p data-i18n="admin.visualHint">Choose a banner that gives the story a strong first impression.</p>
+                    <h2>Hình ảnh</h2>
+                    <p>Chọn banner tạo ấn tượng đầu tiên cho bài viết.</p>
                 </div>
             </div>
             <div class="admin-form-grid admin-form-grid-visual">
                 <div class="admin-field">
-                    <label asp-for="BannerImage" data-i18n="admin.bannerImage">Banner image</label>
+                    <label asp-for="BannerImage">Ảnh banner</label>
                     <input asp-for="BannerImage" type="file" accept=".jpg,.jpeg,.png,.webp,.gif" />
-                    <small data-i18n="admin.bannerHint">JPG, PNG, WEBP or GIF, up to 5 MB.</small>
+                    <small>JPG, PNG, WEBP hoặc GIF, tối đa 5 MB.</small>
                     <span asp-validation-for="BannerImage" class="text-danger"></span>
                 </div>
             </div>
@@ -62,7 +62,7 @@
             {
                 <div class="admin-existing-image">
                     <img src="@Model.BannerImageUrl" alt="" />
-                    <span data-i18n="admin.currentBanner">Current banner</span>
+                    <span>Banner hiện tại</span>
                 </div>
             }
         </section>
@@ -70,18 +70,18 @@
         <section class="admin-form-section">
             <div class="admin-form-section-heading">
                 <div>
-                    <h2 data-i18n="admin.storyContent">Story content</h2>
+                    <h2>Nội dung bài viết</h2>
                 </div>
             </div>
-            <div class="admin-editor-language"><span data-i18n="admin.contentVi">Vietnamese content</span><b>VI</b></div>
+            <div class="admin-editor-language"><span>Nội dung tiếng Việt</span><b>VI</b></div>
             <partial name="_RichTextEditor" model="new RichTextEditorViewModel { FieldName = nameof(Model.ContentVi), Html = Model.ContentVi }" />
-            <div class="admin-editor-language"><span data-i18n="admin.contentEn">English content</span><b>EN</b></div>
+            <div class="admin-editor-language"><span>Nội dung tiếng Anh</span><b>EN</b></div>
             <partial name="_RichTextEditor" model="new RichTextEditorViewModel { FieldName = nameof(Model.ContentEn), Html = Model.ContentEn }" />
         </section>
 
         <div class="admin-form-actions">
-            <a asp-action="Index" data-i18n="admin.cancel">Cancel</a>
-            <button class="admin-primary" type="submit" data-i18n="admin.save">Save story</button>
+            <a asp-action="Index">Hủy</a>
+            <button class="admin-primary" type="submit">Lưu bài viết</button>
         </div>
     </form>
 </div>

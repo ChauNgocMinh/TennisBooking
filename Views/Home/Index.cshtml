@@ -1,9 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 @model TennisBooking.ViewModels.HomeViewModel
-
 <section class="hero-banner">
     <!-- Background Video -->
     <video class="hero-video"
@@ -11,7 +9,7 @@
            muted
            loop
            playsinline>
-        <source src="~/Media/Videos/Banner.mp4" type="video/mp4" />
+        <source src="~/media/Videos/Banner.mp4" type="video/mp4" />
     </video>
 
     <div class="hero-overlay"></div>
@@ -129,7 +127,7 @@
                 <strong id="schedule-selection" data-i18n="schedule.none">Chưa chọn giờ</strong>
             </div>
             <div class="schedule-actions">
-                <span id="schedule-status" class="schedule-status" data-i18n="schedule.start">Chọn giờ bắt đầu</span>
+                <span id="schedule-status" class="schedule-status d-none" data-i18n="schedule.start">Chọn giờ bắt đầu</span>
                 <button type="button"
                         class="btn btn-warning schedule-booking-btn"
                         id="schedule-booking-btn"

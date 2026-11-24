@@ -8,7 +8,7 @@ namespace TennisBooking.Areas.Admin.Controllers;
 [Area("Admin"), Authorize]
 public sealed class CoachesController(IAdminManagementService service) : Controller
 {
-    public async Task<IActionResult> Index(CancellationToken cancellationToken) => View(await service.GetCoachesAsync(cancellationToken));
+    public async Task<IActionResult> Index(int page = 1, CancellationToken cancellationToken = default) => View(await service.GetCoachesAsync(page, 10, cancellationToken));
     public IActionResult Create() => View(new AdminCoachViewModel());
     public async Task<IActionResult> Edit(Guid id, CancellationToken cancellationToken)
     {
@@ -21,7 +21,7 @@ public sealed class CoachesController(IAdminManagementService service) : Control
     {
         if (model.Id == Guid.Empty && (model.ImageFile is null || model.ImageFile.Length == 0))
         {
-            ModelState.AddModelError(nameof(model.ImageFile), "admin.imageRequired");
+            ModelState.AddModelError(nameof(model.ImageFile), "Vui lòng chọn ảnh huấn luyện viên.");
         }
         if (!ModelState.IsValid) return View(model.Id == Guid.Empty ? "Create" : "Edit", model);
         try

@@ -8,7 +8,7 @@ namespace TennisBooking.Areas.Admin.Controllers;
 [Area("Admin"), Authorize]
 public sealed class NewsController(IAdminManagementService service) : Controller
 {
-    public async Task<IActionResult> Index(CancellationToken cancellationToken) => View(await service.GetNewsAsync(cancellationToken));
+    public async Task<IActionResult> Index(int page = 1, CancellationToken cancellationToken = default) => View(await service.GetNewsAsync(page, 10, cancellationToken));
     public IActionResult Create() => View(new AdminNewsViewModel());
     public async Task<IActionResult> Edit(Guid id, CancellationToken cancellationToken)
     {
@@ -21,7 +21,7 @@ public sealed class NewsController(IAdminManagementService service) : Controller
     {
         if (model.Id == Guid.Empty && (model.BannerImage is null || model.BannerImage.Length == 0))
         {
-            ModelState.AddModelError(nameof(model.BannerImage), "admin.bannerRequired");
+            ModelState.AddModelError(nameof(model.BannerImage), "Vui lòng chọn ảnh banner.");
         }
         if (!ModelState.IsValid) return View(model.Id == Guid.Empty ? "Create" : "Edit", model);
         try

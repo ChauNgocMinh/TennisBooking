@@ -14,8 +14,8 @@ public sealed class AdminManagementService(ApplicationDbContext context, IWebHos
         NewsCount = await context.News.CountAsync(cancellationToken)
     };
 
-    public async Task<IReadOnlyCollection<AdminCourtViewModel>> GetCourtsAsync(CancellationToken cancellationToken = default) =>
-        await context.TennisCourts.AsNoTracking().OrderBy(court => court.Name).Select(court => ToViewModel(court)).ToListAsync(cancellationToken);
+    public async Task<AdminPagedViewModel<AdminCourtViewModel>> GetCourtsAsync(int page, int pageSize, CancellationToken cancellationToken = default) =>
+        await PageAsync(context.TennisCourts.AsNoTracking().OrderBy(court => court.Name).Select(court => ToViewModel(court)), page, pageSize, cancellationToken);
 
     public async Task<AdminCourtViewModel?> GetCourtAsync(Guid id, CancellationToken cancellationToken = default) =>
         await context.TennisCourts.AsNoTracking().Where(court => court.Id == id).Select(court => ToViewModel(court)).FirstOrDefaultAsync(cancellationToken);
@@ -34,8 +34,8 @@ public sealed class AdminManagementService(ApplicationDbContext context, IWebHos
 
     public Task<bool> DeleteCourtAsync(Guid id, CancellationToken cancellationToken = default) => DeleteAsync(context.TennisCourts, id, cancellationToken);
 
-    public async Task<IReadOnlyCollection<AdminCoachViewModel>> GetCoachesAsync(CancellationToken cancellationToken = default) =>
-        await context.Coaches.AsNoTracking().OrderBy(coach => coach.Name).Select(coach => ToViewModel(coach)).ToListAsync(cancellationToken);
+    public async Task<AdminPagedViewModel<AdminCoachViewModel>> GetCoachesAsync(int page, int pageSize, CancellationToken cancellationToken = default) =>
+        await PageAsync(context.Coaches.AsNoTracking().OrderBy(coach => coach.Name).Select(coach => ToViewModel(coach)), page, pageSize, cancellationToken);
 
     public async Task<AdminCoachViewModel?> GetCoachAsync(Guid id, CancellationToken cancellationToken = default) =>
         await context.Coaches.AsNoTracking().Where(coach => coach.Id == id).Select(coach => ToViewModel(coach)).FirstOrDefaultAsync(cancellationToken);
@@ -51,8 +51,8 @@ public sealed class AdminManagementService(ApplicationDbContext context, IWebHos
 
     public Task<bool> DeleteCoachAsync(Guid id, CancellationToken cancellationToken = default) => DeleteAsync(context.Coaches, id, cancellationToken);
 
-    public async Task<IReadOnlyCollection<AdminNewsViewModel>> GetNewsAsync(CancellationToken cancellationToken = default) =>
-        await context.News.AsNoTracking().OrderByDescending(news => news.PublishedAt).Select(news => ToViewModel(news)).ToListAsync(cancellationToken);
+    public async Task<AdminPagedViewModel<AdminNewsViewModel>> GetNewsAsync(int page, int pageSize, CancellationToken cancellationToken = default) =>
+        await PageAsync(context.News.AsNoTracking().OrderByDescending(news => news.PublishedAt).Select(news => ToViewModel(news)), page, pageSize, cancellationToken);
 
     public async Task<AdminNewsViewModel?> GetNewsItemAsync(Guid id, CancellationToken cancellationToken = default) =>
         await context.News.AsNoTracking().Where(news => news.Id == id).Select(news => ToViewModel(news)).FirstOrDefaultAsync(cancellationToken);
@@ -68,6 +68,20 @@ public sealed class AdminManagementService(ApplicationDbContext context, IWebHos
     }
 
     public Task<bool> DeleteNewsAsync(Guid id, CancellationToken cancellationToken = default) => DeleteAsync(context.News, id, cancellationToken);
+
+    private static async Task<AdminPagedViewModel<T>> PageAsync<T>(IQueryable<T> query, int page, int pageSize, CancellationToken cancellationToken)
+    {
+        page = Math.Max(1, page);
+        var totalItems = await query.CountAsync(cancellationToken);
+        var totalPages = Math.Max(1, (int)Math.Ceiling(totalItems / (double)pageSize));
+        page = Math.Min(page, totalPages);
+        var items = await query.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
+        return new AdminPagedViewModel<T>
+        {
+            Items = items,
+            Pagination = new AdminPaginationViewModel { Page = page, TotalPages = totalPages }
+        };
+    }
 
     private async Task<bool> DeleteAsync<TEntity>(DbSet<TEntity> set, Guid id, CancellationToken cancellationToken) where TEntity : class
     {

@@ -1,7 +1,7 @@
 @model AdminCourtViewModel
 
 <div class="admin-form-card">
-    <h1 data-i18n="admin.courtForm">Court details</h1>
+    <h1>Thông tin sân</h1>
     <form asp-action="Save" method="post">
         @Html.AntiForgeryToken()
         <input asp-for="Id" type="hidden" />
@@ -9,31 +9,31 @@
 
         <div class="admin-form-grid">
             <div class="admin-field">
-                <label asp-for="Name" data-i18n="admin.name">Name</label>
+                <label asp-for="Name">Tên sân</label>
                 <input asp-for="Name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="admin-field">
-                <label asp-for="CourtType" data-i18n="admin.type">Type</label>
+                <label asp-for="CourtType">Loại sân</label>
                 <input asp-for="CourtType" />
                 <span asp-validation-for="CourtType" class="text-danger"></span>
             </div>
             <div class="admin-field">
-                <label asp-for="Price" data-i18n="admin.price">Price</label>
+                <label asp-for="Price">Giá</label>
                 <input asp-for="Price" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
         </div>
 
         <div class="admin-field">
-            <label asp-for="Description" data-i18n="admin.description">Description</label>
+            <label asp-for="Description">Mô tả</label>
             <textarea asp-for="Description" rows="5"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
         <div class="admin-form-actions">
-            <a asp-action="Index" data-i18n="admin.cancel">Cancel</a>
-            <button class="admin-primary" type="submit" data-i18n="admin.save">Save</button>
+            <a asp-action="Index">Hủy</a>
+            <button class="admin-primary" type="submit">Lưu</button>
         </div>
     </form>
 </div>

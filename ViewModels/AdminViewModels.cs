@@ -37,6 +37,18 @@ public sealed class AdminDashboardViewModel
     public int NewsCount { get; init; }
 }
 
+public sealed class AdminPaginationViewModel
+{
+    public int Page { get; init; }
+    public int TotalPages { get; init; }
+}
+
+public sealed class AdminPagedViewModel<T>
+{
+    public IReadOnlyList<T> Items { get; init; } = [];
+    public AdminPaginationViewModel Pagination { get; init; } = new();
+}
+
 public sealed class AdminCourtViewModel
 {
     public Guid Id { get; set; }

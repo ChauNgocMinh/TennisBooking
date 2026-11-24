@@ -322,6 +322,8 @@ document.querySelectorAll("[data-i18n]").forEach((element) => {
 
 ### Mandatory i18n Rules
 
+The public website supports Vietnamese and English through `wwwroot/js/site.js`. The `/admin` site is an exception: its interface is Vietnamese-only and must not use the public language switcher or `data-i18n` translation flow. Keep bilingual content fields such as Vietnamese/English news fields when they are part of the domain data, but admin labels, buttons, messages, and navigation should be written directly in Vietnamese.
+
 Every new user-facing text added to the application must support both Vietnamese and English.
 
 Do NOT hard-code visible content directly in Razor Views when that content should change with the selected language.

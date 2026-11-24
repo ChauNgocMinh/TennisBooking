@@ -1,11 +1,11 @@
-@model IReadOnlyCollection<AdminCoachViewModel>
+@model AdminPagedViewModel<AdminCoachViewModel>
 
-@{ ViewData["Title"] = "Trainers"; }
+@{ ViewData["Title"] = "Huấn luyện viên"; }
 
 <div class="admin-page">
     <div class="admin-page-header">
-        <h1 data-i18n="admin.coaches">Trainers</h1>
-        <a class="admin-primary" asp-action="Create" data-i18n="admin.add">Add new</a>
+        <h1>Huấn luyện viên</h1>
+        <a class="admin-primary" asp-action="Create">Thêm huấn luyện viên</a>
     </div>
 
     <div class="admin-surface">
@@ -13,13 +13,13 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th data-i18n="admin.name">Name</th>
-                    <th data-i18n="admin.experience">Experience</th>
+                    <th>Họ tên</th>
+                    <th>Kinh nghiệm</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Items)
                 {
                     <tr>
                         <td>
@@ -28,11 +28,11 @@
                         <td>@item.Name</td>
                         <td>@item.Experience</td>
                         <td class="admin-actions">
-                            <a asp-action="Edit" asp-route-id="@item.Id" data-i18n="admin.edit">Edit</a>
+                            <a class="admin-action-edit" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
                             <form asp-action="Delete" method="post" class="d-inline">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="id" value="@item.Id" />
-                                <button type="submit" data-i18n="admin.delete">Delete</button>
+                                <button class="admin-action-delete" type="submit">Xóa</button>
                             </form>
                         </td>
                     </tr>
@@ -40,4 +40,5 @@
             </tbody>
         </table>
     </div>
+    <partial name="_Pagination" model="Model.Pagination" />
 </div>

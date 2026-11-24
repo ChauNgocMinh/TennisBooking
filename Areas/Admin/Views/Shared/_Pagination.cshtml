@@ -1,0 +1,18 @@
+@model AdminPaginationViewModel
+
+@if (Model.TotalPages > 1)
+{
+    <nav class="admin-pagination" aria-label="Phân trang">
+        @if (Model.Page > 1)
+        {
+            <a asp-route-page="@(Model.Page - 1)">Trước</a>
+        }
+
+        <span>Trang @Model.Page / @Model.TotalPages</span>
+
+        @if (Model.Page < Model.TotalPages)
+        {
+            <a asp-route-page="@(Model.Page + 1)">Sau</a>
+        }
+    </nav>
+}
